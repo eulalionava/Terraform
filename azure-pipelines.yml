@@ -21,16 +21,6 @@ steps:
     terraformVersion: 'latest'
   displayName: 'Terraform installer'
 
-#- task: AzurePowerShell@5
-#  inputs:
-#    azureSubscription: 'TESTLABS'
-#    ScriptType: 'InlineScript'
-#    Inline: |
-#      $ACCOUNT_KEY=(Get-AzStorageAccountKey -ResourceGroupName $(RESOURCE_GROUP_NAME) -Name $(STORAGE_ACCOUNT_NAME))[0].Value
-#      $env:ARM_ACCESS_KEY=$ACCOUNT_KEY
-#    azurePowerShellVersion: 'LatestVersion'
-#    pwsh: true
-
 - task: TerraformCLI@1
   inputs:
     command: 'init'
@@ -42,6 +32,7 @@ steps:
     backendAzureRmContainerName: 'terraformcontainer'
     backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
     allowTelemetryCollection: true
+  displayName: 'Terraform init'
 
 - task: TerraformCLI@1
   inputs:
