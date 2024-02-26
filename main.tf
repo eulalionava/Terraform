@@ -1,6 +1,9 @@
-resource "azurerm_resource_group" "rg" {
-  name     = var.rg
-  location = var.location
+data "azurerm_resource_group" "example" {
+  name = var.rg
+}
+
+output "id" {
+  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/RG-TESTLABS-RM"
 }
 resource "azurerm_container_registry" "acr" {
   name                  = "AcrTestlabs"
