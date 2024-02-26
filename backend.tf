@@ -4,7 +4,7 @@ terraform {
   backend "azurerm" {
     storage_account_name = "storageterraform3"
     container_name       = "terraformcontainer"
-    access_key           = ""
+    key                  = "terraform.tfstate"
   }
 
   # Opciones adicionales de configuración
