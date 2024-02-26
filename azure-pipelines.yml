@@ -13,11 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
@@ -32,12 +27,6 @@ steps:
     command: 'validate'
     allowTelemetryCollection: true
   displayName: 'Terraform validate'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'IAC/Templates'
-    Contents: '**'
-    TargetFolder: '$(Build.SourcesDirectory)'
 
 - task: TerraformCLI@1
   inputs:
