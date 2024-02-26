@@ -38,12 +38,15 @@ steps:
   inputs:
     command: 'validate'
     allowTelemetryCollection: true
+  displayName: "Terraform validate"
 
 - task: TerraformCLI@1
   inputs:
-    command: 'apply'
+    command: 'plan'
     environmentServiceName: 'TESTLABS'
     allowTelemetryCollection: true
+  displayName: "Terraform plan"
+
 
 - task: PublishBuildArtifacts@1
   inputs:
