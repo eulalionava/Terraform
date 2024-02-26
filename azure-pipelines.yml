@@ -17,11 +17,18 @@ steps:
   inputs:
     terraformVersion: 'latest'
   displayName: 'Terraform installer'
+
 - task: TerraformCLI@1
   inputs:
     command: 'init'
-    allowTelemetryCollection: true
+    backendServiceArm: 'TESTLABS' 
+    #backendAzureRmResourceGroupName: 'Nombre_de_tu_grupo_de_recursos'  
+    #backendAzureRmStorageAccountName: 'Nombre_de_tu_cuenta_de_almacenamiento' 
+    #backendAzureRmContainerName: 'Nombre_de_tu_contenedor_de_almacenamiento' 
+    #backendAzureRmKey: 'Nombre_de_tu_archivo_de_estado.tfstate'  
+    #allowTelemetryCollection: true
   displayName: 'terraform init'
+
 - task: TerraformCLI@1
   inputs:
     command: 'validate'
