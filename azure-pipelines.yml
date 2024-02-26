@@ -27,6 +27,7 @@ steps:
     #backendAzureRmContainerName: 'Nombre_de_tu_contenedor_de_almacenamiento' 
     #backendAzureRmKey: 'Nombre_de_tu_archivo_de_estado.tfstate'  
     #allowTelemetryCollection: true
+    backendAzureRmSasToken: '$(StorageAccountAccessKey)'
   displayName: 'terraform init'
 
 - task: TerraformCLI@1
