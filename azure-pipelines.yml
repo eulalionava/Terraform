@@ -38,10 +38,16 @@ steps:
   inputs:
     command: 'validate'
     allowTelemetryCollection: true
-  displayName: 'Terraform validate'
 
 - task: TerraformCLI@1
   inputs:
-    command: 'plan'
+    command: 'apply'
+    environmentServiceName: 'TESTLABS'
     allowTelemetryCollection: true
-  displayName: 'Teraform plan'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifact'
