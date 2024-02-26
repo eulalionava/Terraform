@@ -12,51 +12,76 @@ pool:
 variables:
 - group: Terraform
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: 'Plan'
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
 
-- task: TerraformInstaller@1
-  inputs:
-    terraformVersion: 'latest'
-  displayName: 'Terraform installer'
+  - task: TerraformInstaller@1
+    inputs:
+      terraformVersion: 'latest'
+    displayName: 'Terraform installer'
+  - task: TerraformCLI@1
+    inputs:
+      command: 'init'
+      backendType: 'azurerm'
+      backendServiceArm: 'TESTLABS'
+      backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
+      backendAzureRmStorageAccountName: 'storageterraform3'
+      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
+      allowTelemetryCollection: true
+    displayName: 'Terraform init'
+  - task: TerraformCLI@1
+    inputs:
+      command: 'validate'
+      allowTelemetryCollection: true
+    displayName: "Terraform validate"
 
-- task: TerraformCLI@1
-  inputs:
-    command: 'init'
-    backendType: 'azurerm'
-    backendServiceArm: 'TESTLABS'
-    backendAzureRmSubscriptionId: 'e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06'
-    backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
-    backendAzureRmStorageAccountName: 'storageterraform3'
-    backendAzureRmContainerName: 'terraformcontainer'
-    backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
-    allowTelemetryCollection: true
-  displayName: 'Terraform init'
+  - task: TerraformCLI@1
+    inputs:
+      command: 'plan'
+      environmentServiceName: 'TESTLABS'
+      allowTelemetryCollection: true
+    displayName: "Terraform plan"
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#      ArtifactName: 'drop'
+#      publishLocation: 'Container'
+#    displayName: "copy files"
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    displayName: 'Publish Artifact'
 
-- task: TerraformCLI@1
-  inputs:
-    command: 'validate'
-    allowTelemetryCollection: true
-  displayName: "Terraform validate"
-
-- task: TerraformCLI@1
-  inputs:
-    command: 'plan'
-    environmentServiceName: 'TESTLABS'
-    allowTelemetryCollection: true
-  displayName: "Terraform plan"
-
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: "copy files"
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Publish Artifact'
+- job: 'DeployJob'
+  displayName: 'Deploy'
+  dependsOn: 'TerraformJob'
+  steps:
+  - task: TerraformCLI@1
+    inputs:
+      command: 'init'
+      backendType: 'azurerm'
+      backendServiceArm: 'TESTLABS'
+      backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
+      backendAzureRmStorageAccountName: 'storageterraform3'
+      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
+      allowTelemetryCollection: true
+    displayName: 'Terraform init'
+  - task: TerraformCLI@1
+    inputs:
+      command: 'plan'
+      environmentServiceName: 'TESTLABS'
+      allowTelemetryCollection: true
+    displayName: "Terraform plan"
+  - task: TerraformCLI@1
+    inputs:
+      command: 'apply'
+      environmentServiceName: 'TESTLABS'
+      allowTelemetryCollection: true
+    displayName: "Terraform Apply"
