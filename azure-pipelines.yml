@@ -39,3 +39,7 @@ steps:
     Contents: '**'
     TargetFolder: '$(Build.SourcesDirectory)'
 
+- task: TerraformCLI@1
+  inputs:
+    command: 'plan'
+    allowTelemetryCollection: true
