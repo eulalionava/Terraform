@@ -22,7 +22,7 @@ resource "azurerm_container_registry" "acr" {
 
 resource "azurerm_arc_kubernetes_cluster" "aks" {
   name                         = "AksTestlabs"
-  resource_group_name          = azurerm_resource_group.rg.name
+  resource_group_name          = var.rg
   location                     = var.location
   agent_public_key_certificate = filebase64("testdata/public.cer")
 
