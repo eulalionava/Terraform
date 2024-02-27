@@ -182,3 +182,6 @@ resource "azurerm_public_ip" "public_ip" {
 #    EmailOwner  = "acardenas@readymind.ms"
 #  }
 #}
+
+###### ARO #####
+
