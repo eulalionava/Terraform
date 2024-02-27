@@ -24,8 +24,7 @@ resource "azurerm_arc_kubernetes_cluster" "aks" {
   name                         = "AksTestlabs"
   resource_group_name          = var.rg
   location                     = var.location
-  agent_public_key_certificate = filebase64("testdata/public.cer")
-
+  
   identity {
     type = "SystemAssigned"
   }
