@@ -103,10 +103,10 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes     = ["10.254.0.0/24"]
 }
 
-resource "azurerm_public_ip" "example" {
-  name                = "example-pip"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+resource "azurerm_public_ip" "public_ip" {
+  name                = "PublicIpTestLabs"
+  resource_group_name = var.rg
+  location            = var.location
   allocation_method   = "Dynamic"
 }
 
