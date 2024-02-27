@@ -11,4 +11,11 @@ resource "azurerm_container_registry" "acr" {
   location              = var.location
   sku                   = "Basic"
   data_endpoint_enabled = false
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+  }
 }
