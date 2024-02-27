@@ -89,19 +89,19 @@ resource "azurerm_key_vault" "kv" {
   }
 }
 
-#resource "azurerm_virtual_network" "vnet" {
-#  name                = "VnetTestLabs"
-#  resource_group_name = var.rg
-#  location            = var.location
-#  address_space       = ["10.254.0.0/16"]
-#}
+resource "azurerm_virtual_network" "vnet" {
+  name                = "VnetTestLabs"
+  resource_group_name = var.rg
+  location            = var.location
+  address_space       = ["10.254.0.0/16"]
+}
 
-#resource "azurerm_subnet" "subnet" {
-#  name                 = "SubnetTestlabs"
-#  resource_group_name  = var.rg
-#  virtual_network_name = var.location
-#  address_prefixes     = ["10.254.0.0/24"]
-#}
+resource "azurerm_subnet" "subnet" {
+  name                 = "SubnetTestlabs"
+  resource_group_name  = var.rg
+  virtual_network_name = var.location
+  address_prefixes     = ["10.254.0.0/24"]
+}
 
 #resource "azurerm_public_ip" "example" {
 #  name                = "example-pip"
