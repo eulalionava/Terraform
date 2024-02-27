@@ -20,22 +20,22 @@ resource "azurerm_container_registry" "acr" {
   }
 }
 
-#resource "azurerm_arc_kubernetes_cluster" "aks" {
-#  name                         = "AksTestlabs"
-#  resource_group_name          = var.rg
-#  location                     = var.location
-#  
-#  identity {
-#    type = "SystemAssigned"
-#  }
-#
-#  tags = {
-#    Environment = "Develop"
-#    Department  = "EH"
-#    Createdby   = "Terraform"
-#    EmailOwner  = "acardenas@readymind.ms"
-#  }
-#}
+resource "azurerm_arc_kubernetes_cluster" "aks" {
+  name                         = "AksTestlabs"
+  resource_group_name          = var.rg
+  location                     = var.location
+  
+  identity {
+    type = "SystemAssigned"
+  }
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+  }
+}
 
 #data "azurerm_client_config" "current" {}
 #
