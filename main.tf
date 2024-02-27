@@ -53,41 +53,41 @@ output "kube_config" {
 }
 
 data "azurerm_client_config" "current" {}
-#
-#resource "azurerm_key_vault" "kv" {
-#  name                        = "KvTestlabs"
-#  location                    = var.location
-#  resource_group_name         = var.rg
-#  enabled_for_disk_encryption = true
-#  tenant_id                   = var.tenant
-#  soft_delete_retention_days  = 7
-#  purge_protection_enabled    = false
 
-#  sku_name = "standard"
+resource "azurerm_key_vault" "kv" {
+  name                        = "KvTestlabs"
+  location                    = var.location
+  resource_group_name         = var.rg
+  enabled_for_disk_encryption = true
+  tenant_id                   = var.tenant
+  soft_delete_retention_days  = 7
+  purge_protection_enabled    = false
 
-#  access_policy {
-#    tenant_id = var.tenant
-#    object_id = data.azurerm_client_config.current.object_id
+  sku_name = "standard"
 
-#    key_permissions = [
-#      "Get",
-#    ]
+  access_policy {
+    tenant_id = var.tenant
+    object_id = data.azurerm_client_config.current.object_id
 
-#    secret_permissions = [
-#      "Get",
-#    ]
+    key_permissions = [
+      "Get",
+    ]
 
-#    storage_permissions = [
-#      "Get",
-#    ]
-#  }
-#  tags = {
-#    Environment = "Develop"
-#    Department  = "EH"
-#    Createdby   = "Terraform"
-#    EmailOwner  = "acardenas@readymind.ms"
-#  }
-#}
+    secret_permissions = [
+      "Get",
+    ]
+
+    storage_permissions = [
+      "Get",
+    ]
+  }
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+  }
+}
 
 #resource "azurerm_virtual_network" "vnet" {
 #  name                = "VnetTestLabs"
