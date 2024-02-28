@@ -37,7 +37,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   tags = {
-    Environment = "Production"
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
   }
 }
 
@@ -99,7 +102,7 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "subnet" {
   name                 = "SubnetTestlabs"
   resource_group_name  = var.rg
-  virtual_network_name = var.location
+  virtual_network_name = "VnetTestLabs"
   address_prefixes     = ["10.254.0.0/24"]
 }
 
