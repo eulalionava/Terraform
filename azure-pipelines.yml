@@ -61,7 +61,7 @@ jobs:
 - job: 'DeployJob'
   displayName: 'Deploy'
   dependsOn: 'Plan'
-  condition: false
+  #condition: false
   steps:
   - task: TerraformCLI@1
     inputs:
