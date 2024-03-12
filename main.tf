@@ -1,20 +1,15 @@
 #Grupo de recursos para las vnet
-resource "azurerm_resource_group" "VNET-RG" {
-  name     = "VNET-RG"
-  location = var.location
-  
-  tags = {
-    Environment = "Natus"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-  }
-}
+#resource "azurerm_resource_group" "VNET-RG" {
+#  name     = "VNET-RG"
+#  location = var.location
+terraform import azurerm_resource_group.VNET-RG /subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG
+
+ 
 
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet01"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.VNET-RG.location
+  location            = var.location
   resource_group_name = azurerm_resource_group.VNET-RG.name
 }
 
@@ -26,16 +21,16 @@ resource "azurerm_subnet" "subnet" {
 }
 
 #Grupo de recursos para el application gateway
-resource "azurerm_resource_group" "natus-seg-rg" {
-  name     = "natus-seg-rg"
-  location = var.location
-  tags = {
-    Environment = "Natus"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-  }
-}
+#resource "azurerm_resource_group" "natus-seg-rg" {
+#  name     = "natus-seg-rg"
+#  location = var.location
+#  tags = {
+#    Environment = "Natus"
+#    Department  = "EH"
+#    Createdby   = "Terraform"
+#    EmailOwner  = "acardenas@readymind.ms"
+#  }
+#}
 
 
 resource "azurerm_public_ip" "public_ip" {
