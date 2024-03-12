@@ -84,4 +84,5 @@ jobs:
       command: 'apply'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
     displayName: "Terraform Apply"
