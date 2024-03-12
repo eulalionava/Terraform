@@ -44,13 +44,9 @@ jobs:
       command: 'plan'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
     displayName: "Terraform plan"
-#  - task: PublishBuildArtifacts@1
-#    inputs:
-#      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#      ArtifactName: 'drop'
-#      publishLocation: 'Container'
-#    displayName: "copy files"
+
   - task: CopyFiles@2
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)'
