@@ -111,11 +111,7 @@ resource "azurerm_container_registry" "acr" {
     zone_redundancy_enabled = true
     tags                    = {}
   }
-  georeplications {
-    location                = "North Europe"
-    zone_redundancy_enabled = true
-    tags                    = {}
-  }
+  
 }
 
 #AKS
