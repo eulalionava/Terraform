@@ -106,11 +106,7 @@ resource "azurerm_container_registry" "acr" {
   location            = azurerm_resource_group.natus-aks.location
   sku                 = "Premium"
   admin_enabled       = false
-  georeplications {
-    location                = azurerm_resource_group.natus-aks.location
-    zone_redundancy_enabled = true
-    tags                    = {}
-  }
+  
   
 }
 
