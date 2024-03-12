@@ -94,3 +94,25 @@ resource "azurerm_application_gateway" "appgw" {
     backend_http_settings_name = local.http_setting_name
   }
 }
+#Grupo de recursos para aks
+resource "azurerm_resource_group" "natus-aks" {
+  name     = "natus-aks"
+  location = var.location
+}
+resource "azurerm_container_registry" "acr" {
+  name                = "containerRegistry01"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  sku                 = "Premium"
+  admin_enabled       = false
+  georeplications {
+    location                = var.location
+    zone_redundancy_enabled = true
+    tags                    = {}
+  }
+  georeplications {
+    location                = "North Europe"
+    zone_redundancy_enabled = true
+    tags                    = {}
+  }
+}
