@@ -4,7 +4,7 @@
 #  location = var.location
 #}
 data "azurerm_resource_group" "VNET-RG" {
-  name = var.rg
+  name = "VNET-RG"
 }
 
 output "id" {
@@ -30,7 +30,7 @@ resource "azurerm_subnet" "subnet" {
 #  location = var.location
 #}
 data "azurerm_resource_group" "natus-seg-rg" {
-  name = var.rg
+  name = "natus-seg-rg"
 }
 
 output "id2" {
@@ -114,7 +114,7 @@ resource "azurerm_application_gateway" "appgw" {
 #  location = var.location
 #}
 data "azurerm_resource_group" "natus-aks" {
-  name = var.rg
+  name = "natus-aks"
 }
 
 output "id3" {
