@@ -101,8 +101,8 @@ resource "azurerm_resource_group" "natus-aks" {
 }
 resource "azurerm_container_registry" "acr" {
   name                = "containerRegistry01"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  location            = azurerm_resource_group.natus-aks.location
   sku                 = "Premium"
   admin_enabled       = false
   georeplications {
@@ -115,4 +115,46 @@ resource "azurerm_container_registry" "acr" {
     zone_redundancy_enabled = true
     tags                    = {}
   }
+}
+
+#AKS
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = "aks1"
+  location            = azurerm_resource_group.natus-aks.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  dns_prefix          = "exampleaks1"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  
+  node_taint {
+      effect = "NoSchedule"
+      key    = "custom_node"
+      value  = "true"
+    }
+
+    enable_auto_scaling = true
+    min_count           = 1
+    max_count           = 3
+  }
+  identity {
+    type = "SystemAssigned"
+  }
+
+  tags = {
+    Environment = "Production"
+  }
+}
+
+output "client_certificate" {
+  value     = azurerm_kubernetes_cluster.example.kube_config[0].client_certificate
+  sensitive = true
+}
+
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.example.kube_config_raw
+
+  sensitive = true
 }
