@@ -33,7 +33,7 @@ data "azurerm_resource_group" "natus-seg-rg" {
   name = var.rg
 }
 
-output "id" {
+output "id2" {
   value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-seg-rg"
 }
 
@@ -117,7 +117,7 @@ data "azurerm_resource_group" "natus-aks" {
   name = var.rg
 }
 
-output "id" {
+output "id3" {
   value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-aks"
 }
 resource "azurerm_container_registry" "acr01" {
