@@ -100,7 +100,7 @@ resource "azurerm_resource_group" "natus-aks" {
   location = var.location
 }
 
-resource "azurerm_container_registry" "acr" {
+resource "azurerm_container_registry" "acr01" {
   name                = "containerRegistry01"
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
@@ -111,7 +111,7 @@ resource "azurerm_container_registry" "acr" {
 }
 
 #AKS
-resource "azurerm_kubernetes_cluster" "aks" {
+resource "azurerm_kubernetes_cluster" "aks01" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
@@ -139,12 +139,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
+  value     = azurerm_kubernetes_cluster.aks01.kube_config[0].client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks.kube_config_raw
+  value = azurerm_kubernetes_cluster.aks01.kube_config_raw
 
   sensitive = true
 }
