@@ -76,6 +76,8 @@ jobs:
       command: 'plan'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
+      publishPlanResults: 'plan_results.json'
     displayName: "Terraform plan"
   - task: TerraformCLI@1
     inputs:
