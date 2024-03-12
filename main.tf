@@ -22,6 +22,14 @@ resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
   location = var.location
 }
+
+resource "azurerm_public_ip" "public_ip" {
+  name                = "public_ip"
+  resource_group_name = azurerm_resource_group.natus-seg-rg.name
+  location            = azurerm_resource_group.natus-seg-rg.location
+  allocation_method   = "Dynamic"
+}
+
 locals {
   backend_address_pool_name      = "${azurerm_virtual_network.vnet.name}-beap"
   frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
@@ -52,10 +60,10 @@ resource "azurerm_application_gateway" "appgw" {
     port = 80
   }
 
-  #frontend_ip_configuration {
-  #  name                 = local.frontend_ip_configuration_name
-  #  public_ip_address_id = azurerm_public_ip.example.id
-  #}
+  frontend_ip_configuration {
+    name                 = local.frontend_ip_configuration_name
+    public_ip_address_id = azurerm_public_ip.public_ip.id
+  }
 
   backend_address_pool {
     name = local.backend_address_pool_name
