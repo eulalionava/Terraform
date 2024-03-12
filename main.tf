@@ -1,15 +1,9 @@
 #Grupo de recursos para las vnet
-#resource "azurerm_resource_group" "VNET-RG" {
-#  name     = "VNET-RG"
-#  location = var.location
-#}
-data "azurerm_resource_group" "VNET-RG" {
-  name = "VNET-RG"
+resource "azurerm_resource_group" "VNET-RG" {
+  name     = "VNET-RG"
+  location = var.location
 }
 
-output "id" {
-  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG"
-}
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet01"
   address_space       = ["10.0.0.0/16"]
@@ -25,17 +19,11 @@ resource "azurerm_subnet" "subnet" {
 }
 
 #Grupo de recursos para el application gateway
-#resource "azurerm_resource_group" "natus-seg-rg" {
-#  name     = "natus-seg-rg"
-#  location = var.location
-#}
-data "azurerm_resource_group" "natus-seg-rg" {
-  name = "natus-seg-rg"
+resource "azurerm_resource_group" "natus-seg-rg" {
+  name     = "natus-seg-rg"
+  location = var.location
 }
 
-output "id2" {
-  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-seg-rg"
-}
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
@@ -109,17 +97,11 @@ resource "azurerm_application_gateway" "appgw" {
   }
 }
 #Grupo de recursos para aks
-#resource "azurerm_resource_group" "natus-aks" {
-#  name     = "natus-aks"
-#  location = var.location
-#}
-data "azurerm_resource_group" "natus-aks" {
-  name = "natus-aks"
+resource "azurerm_resource_group" "natus-aks" {
+  name     = "natus-aks"
+  location = var.location
 }
 
-output "id3" {
-  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-aks"
-}
 resource "azurerm_container_registry" "acr01" {
   name                = "containerRegistry01"
   resource_group_name = azurerm_resource_group.natus-aks.name
