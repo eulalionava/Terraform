@@ -29,7 +29,7 @@ jobs:
       backendServiceArm: 'TESTLABS'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmContainerName: 'multistagecontainer'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
@@ -70,7 +70,7 @@ jobs:
       backendServiceArm: 'TESTLABS'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmContainerName: 'multistagecontainer'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
