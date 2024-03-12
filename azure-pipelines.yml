@@ -45,6 +45,7 @@ jobs:
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
       commandOptions: '-lock=false'
+      publishPlanResults: 'results.txt'
     displayName: "Terraform plan"
 
   - task: CopyFiles@2
