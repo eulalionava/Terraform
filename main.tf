@@ -128,12 +128,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     name       = "default"
     node_count = 1
     vm_size    = "Standard_D2_v2"
-  
-  node_taint {
-      effect = "NoSchedule"
-      key    = "custom_node"
-      value  = "true"
-    }
 
     enable_auto_scaling = true
     min_count           = 1
@@ -149,12 +143,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.example.kube_config[0].client_certificate
+  value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
+  value = azurerm_kubernetes_cluster.aks.kube_config_raw
 
   sensitive = true
 }
