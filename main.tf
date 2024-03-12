@@ -99,6 +99,7 @@ resource "azurerm_resource_group" "natus-aks" {
   name     = "natus-aks"
   location = var.location
 }
+
 resource "azurerm_container_registry" "acr" {
   name                = "containerRegistry01"
   resource_group_name = azurerm_resource_group.natus-aks.name
@@ -106,7 +107,7 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Premium"
   admin_enabled       = false
   georeplications {
-    location                = var.location
+    location                = azurerm_resource_group.natus-aks.location
     zone_redundancy_enabled = true
     tags                    = {}
   }
