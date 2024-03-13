@@ -166,7 +166,9 @@ resource "azurerm_kubernetes_cluster" "aks01" {
   identity {
     type = "SystemAssigned"
   }
-  
+  role_based_access_control {
+    enabled = true
+  }
   network_profile {
     network_plugin = "azure"
   }
