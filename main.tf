@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
   resource_group_name = azurerm_resource_group.natus-seg-rg.name
   location            = azurerm_resource_group.natus-seg-rg.location
-  allocation_method   = "Standard"
+  allocation_method   = "Static"
 }
 
 locals {
@@ -101,10 +101,10 @@ resource "azurerm_resource_group" "natus-aks" {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "acr-natus-01"
+  name                = "acrnatus01"
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
-  sku                 = "basic"
+  sku                 = "Basic"
   
   
 }
