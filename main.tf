@@ -45,8 +45,8 @@ resource "azurerm_application_gateway" "appgw" {
   location            = azurerm_resource_group.natus-seg-rg.location
 
   sku {
-    name     = "Standard_v2"
-    tier     = "Standard_v2"
+    name     = "Standard"
+    tier     = "Standard"
     capacity = 2
   }
 
