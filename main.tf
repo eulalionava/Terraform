@@ -135,7 +135,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin = "azure"
   }
   tags = {
-    Environment = "Production"
+    Environment = "Natus"
   }
 }
 
