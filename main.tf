@@ -210,7 +210,7 @@ output "kube_config" {
 
 #BD
 
-resource "azurerm_storage_account" "storage" {
+resource "azurerm_storage_account" "storagenatus" {
   name                     = "storage"
   resource_group_name      = azurerm_resource_group.natus-aks.name
   location                 = azurerm_resource_group.natus-aks.location
