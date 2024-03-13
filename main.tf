@@ -2,20 +2,23 @@
 #resource "azurerm_resource_group" "VNET-RG" {
 #  name     = "VNET-RG"
 #  location = var.location
-terraform import azurerm_resource_group.VNET-RG /subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG
+data "azurerm_resource_group" "VNET-RG" {
+  name = "VNET-RG"
+}
 
- 
-
+output "id" {
+  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG"
+}
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet01"
   address_space       = ["10.0.0.0/16"]
   location            = var.location
-  resource_group_name = azurerm_resource_group.VNET-RG.name
+  resource_group_name = "VNET-RG"
 }
 
 resource "azurerm_subnet" "subnet" {
   name                 = "subnet01"
-  resource_group_name  = azurerm_resource_group.VNET-RG.name
+  resource_group_name  = "VNET-RG"
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -31,12 +34,18 @@ resource "azurerm_subnet" "subnet" {
 #    EmailOwner  = "acardenas@readymind.ms"
 #  }
 #}
+data "azurerm_resource_group" "natus-seg-rg" {
+  name = "natus-seg-rg"
+}
 
+output "id2" {
+  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-seg-rg"
+}
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
-  resource_group_name = azurerm_resource_group.natus-seg-rg.name
-  location            = azurerm_resource_group.natus-seg-rg.location
+  resource_group_name = "natus-seg-rg"
+  location            = var.location
   allocation_method   = "Standard"
 }
 
@@ -49,10 +58,10 @@ locals {
   request_routing_rule_name      = "${azurerm_virtual_network.vnet.name}-rqrt"
   redirect_configuration_name    = "${azurerm_virtual_network.vnet.name}-rdrcfg"
 }
-resource "azurerm_application_gateway" "appgw" {
+resource "azurerm_application_gateway" "appgw01" {
   name                = "appgw01"
-  resource_group_name = azurerm_resource_group.natus-seg-rg.name
-  location            = azurerm_resource_group.natus-seg-rg.location
+  resource_group_name = "natus-seg-rg"
+  location            = var.location
 
   sku {
     name     = "Standard_v2"
@@ -105,21 +114,28 @@ resource "azurerm_application_gateway" "appgw" {
   }
 }
 #Grupo de recursos para aks
-resource "azurerm_resource_group" "natus-aks" {
-  name     = "natus-aks"
-  location = var.location
-  tags = {
-    Environment = "Natus"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-  }
+#resource "azurerm_resource_group" "natus-aks" {
+#  name     = "natus-aks"
+#  location = var.location
+#  tags = {
+#    Environment = "Natus"
+#    Department  = "EH"
+#    Createdby   = "Terraform"
+#    EmailOwner  = "acardenas@readymind.ms"
+#  }
+#}
+
+data "azurerm_resource_group" "natus-aks" {
+  name = "natus-aks"
 }
 
+output "id" {
+  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-aks"
+}
 resource "azurerm_container_registry" "acr01" {
   name                = "containerRegistry01"
-  resource_group_name = azurerm_resource_group.natus-aks.name
-  location            = azurerm_resource_group.natus-aks.location
+  resource_group_name = "natus-aks"
+  location            = var.location
   sku                 = "Premium"
   admin_enabled       = false
   
