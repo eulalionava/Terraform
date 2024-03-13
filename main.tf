@@ -8,6 +8,14 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.VNET-RG.location
   resource_group_name = azurerm_resource_group.VNET-RG.name
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 }
 
 resource "azurerm_subnet" "subnet" {
@@ -29,6 +37,14 @@ resource "azurerm_public_ip" "public_ip" {
   location            = azurerm_resource_group.natus-seg-rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 }
 
 locals {
@@ -45,6 +61,13 @@ resource "azurerm_application_gateway" "appgw" {
   resource_group_name = azurerm_resource_group.natus-seg-rg.name
   location            = azurerm_resource_group.natus-seg-rg.location
 
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 
   sku {
     name     = "Standard_v2"
@@ -107,7 +130,14 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
   sku                 = "Basic"
-  
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }  
   
 }
 
@@ -135,7 +165,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin = "azure"
   }
   tags = {
-    Environment = "Natus"
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
   }
 }
 
