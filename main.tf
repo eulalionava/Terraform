@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
   resource_group_name = azurerm_resource_group.natus-seg-rg.name
   location            = azurerm_resource_group.natus-seg-rg.location
-  allocation_method   = "Static"
+  allocation_method   = "Dynamic"
 }
 
 locals {
@@ -45,8 +45,8 @@ resource "azurerm_application_gateway" "appgw" {
   location            = azurerm_resource_group.natus-seg-rg.location
 
   sku {
-    name     = "Standard"
-    tier     = "Standard"
+    name     = "Standard_v2"
+    tier     = "Standard_v2"
     capacity = 2
   }
 
