@@ -2,6 +2,14 @@
 resource "azurerm_resource_group" "VNET-RG" {
   name     = "VNET-RG"
   location = var.location
+  
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 }
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet01"
@@ -29,6 +37,14 @@ resource "azurerm_subnet" "subnet" {
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
   location = var.location
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 }
 
 resource "azurerm_public_ip" "public_ip" {
@@ -123,6 +139,14 @@ resource "azurerm_application_gateway" "appgw" {
 resource "azurerm_resource_group" "natus-aks" {
   name     = "natus-aks"
   location = var.location
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
 }
 
 resource "azurerm_container_registry" "acr" {
