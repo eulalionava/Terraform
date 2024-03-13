@@ -6,7 +6,7 @@ data "azurerm_resource_group" "VNET-RG" {
   name = "VNET-RG"
 }
 
-output "id" {
+output "id2" {
   value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG"
 }
 resource "azurerm_virtual_network" "vnet" {
@@ -38,7 +38,7 @@ data "azurerm_resource_group" "natus-seg-rg" {
   name = "natus-seg-rg"
 }
 
-output "id2" {
+output "id3" {
   value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-seg-rg"
 }
 
@@ -129,7 +129,7 @@ data "azurerm_resource_group" "natus-aks" {
   name = "natus-aks"
 }
 
-output "id" {
+output "id4" {
   value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-aks"
 }
 resource "azurerm_container_registry" "acr01" {
