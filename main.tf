@@ -3,25 +3,16 @@ resource "azurerm_resource_group" "VNET-RG" {
   name     = "VNET-RG"
   location = var.location
 }
-
-#data "azurerm_resource_group" "VNET-RG" {
-#  name = "VNET-RG"
-#}
-#
-#output "id2" {
-#  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/VNET-RG"
-#}
-
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet01"
   address_space       = ["10.0.0.0/16"]
-  location            = var.location
-  resource_group_name = "VNET-RG"
+  location            = azurerm_resource_group.VNET-RG.location
+  resource_group_name = azurerm_resource_group.VNET-RG.name
 }
 
 resource "azurerm_subnet" "subnet" {
   name                 = "subnet01"
-  resource_group_name  = "VNET-RG"
+  resource_group_name  = azurerm_resource_group.VNET-RG.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -30,27 +21,13 @@ resource "azurerm_subnet" "subnet" {
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
   location = var.location
-  tags = {
-    Environment = "Natus"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-  }
 }
-
-#data "azurerm_resource_group" "natus-seg-rg" {
-#  name = "natus-seg-rg"
-#}
-#
-#output "id3" {
-#  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-seg-rg"
-#}
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
-  resource_group_name = "natus-seg-rg"
-  location            = var.location
-  allocation_method   = "Static"
+  resource_group_name = azurerm_resource_group.natus-seg-rg.name
+  location            = azurerm_resource_group.natus-seg-rg.location
+  allocation_method   = "Dynamic"
 }
 
 locals {
@@ -62,10 +39,10 @@ locals {
   request_routing_rule_name      = "${azurerm_virtual_network.vnet.name}-rqrt"
   redirect_configuration_name    = "${azurerm_virtual_network.vnet.name}-rdrcfg"
 }
-resource "azurerm_application_gateway" "appgw01" {
+resource "azurerm_application_gateway" "appgw" {
   name                = "appgw01"
-  resource_group_name = "natus-seg-rg"
-  location            = var.location
+  resource_group_name = azurerm_resource_group.natus-seg-rg.name
+  location            = azurerm_resource_group.natus-seg-rg.location
 
   sku {
     name     = "Standard_v2"
@@ -121,26 +98,12 @@ resource "azurerm_application_gateway" "appgw01" {
 resource "azurerm_resource_group" "natus-aks" {
   name     = "natus-aks"
   location = var.location
-  tags = {
-    Environment = "Natus"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-  }
 }
 
-#data "azurerm_resource_group" "natus-aks" {
-#  name = "natus-aks"
-#}
-#
-#output "id4" {
-#  value = "/subscriptions/e9cdf5ea-1d5c-48c0-b179-7dc7a4973f06/resourceGroups/natus-aks"
-#}
-
-resource "azurerm_container_registry" "acr01" {
+resource "azurerm_container_registry" "acr" {
   name                = "containerRegistry01"
-  resource_group_name = "natus-aks"
-  location            = var.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  location            = azurerm_resource_group.natus-aks.location
   sku                 = "Premium"
   admin_enabled       = false
   
@@ -148,10 +111,10 @@ resource "azurerm_container_registry" "acr01" {
 }
 
 #AKS
-resource "azurerm_kubernetes_cluster" "aks01" {
+resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
-  location            = var.location
-  resource_group_name = "natus-aks"
+  location            = azurerm_resource_group.natus-aks.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
   dns_prefix          = "exampleaks1"
 
   default_node_pool {
@@ -176,12 +139,12 @@ resource "azurerm_kubernetes_cluster" "aks01" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.aks01.kube_config[0].client_certificate
+  value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks01.kube_config_raw
+  value = azurerm_kubernetes_cluster.aks.kube_config_raw
 
   sensitive = true
 }
