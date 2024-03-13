@@ -46,7 +46,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
   resource_group_name = "natus-seg-rg"
   location            = var.location
-  allocation_method   = "Standard"
+  allocation_method   = "Static"
 }
 
 locals {
@@ -145,8 +145,8 @@ resource "azurerm_container_registry" "acr01" {
 #AKS
 resource "azurerm_kubernetes_cluster" "aks01" {
   name                = "aks1"
-  location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.natus-aks.name
+  location            = var.location
+  resource_group_name = "natus-aks"
   dns_prefix          = "exampleaks1"
 
   default_node_pool {
