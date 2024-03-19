@@ -38,6 +38,12 @@ resource "azurerm_subnet" "subnet-bastion" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
+resource "azurerm_subnet" "subnet-agent" {
+  name                 = "subnet-agent"
+  resource_group_name  = azurerm_resource_group.VNET-RG.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.3.0/24"]
+}
 #Grupo de recursos para el agente
 resource "azurerm_resource_group" "natus-devops-int" {
   name     = "natus-devops-int"
