@@ -93,6 +93,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   size                = "Standard_F2"
   admin_username      = "natususer"
   admin_password      = "N4tu5!"
+  disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.network-interface.id,
   ]
