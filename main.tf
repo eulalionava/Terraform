@@ -100,6 +100,10 @@ resource "azurerm_linux_virtual_machine" "vm" {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = false  
+  }
 
   source_image_reference {
     publisher = "Canonical"
