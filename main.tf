@@ -154,6 +154,7 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
   sku                 = "Basic"
+  public_network_access_enabled = false
 
   tags = {
     Environment = "Develop"
