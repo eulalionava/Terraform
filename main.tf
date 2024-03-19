@@ -228,7 +228,7 @@ resource "azurerm_container_registry" "acr" {
   name                = "acrnatus01"
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
-  sku                 = "Basic"
+  sku                 = "Standard"
   public_network_access_enabled = false
 
   tags = {
