@@ -82,7 +82,7 @@ resource "azurerm_network_interface" "network-interface" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.subnet.id
+    subnet_id                     = azurerm_subnet.subnet-agent.id
     private_ip_address_allocation = "Dynamic"
   }
 }
