@@ -85,11 +85,11 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = azurerm_resource_group.natus-devops-int.name
   location            = azurerm_resource_group.natus-devops-int.location
   size                = "Standard_F2"
-  admin_username      = "adminuser"
+  admin_username      = "natususer"
+  admin_password      = "n4tu5"
   network_interface_ids = [
     azurerm_network_interface.network-interface.id,
   ]
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -100,15 +100,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts"
     version   = "latest"
-  }
-  os_profile {
-    computer_name = "hostname" 
-    admin_username = "testadmin" 
-    admin_password = "pass123!"
-  }
-  os_profile_linux_config{
-    disable_password_authentication = false
-  }
+  }  
 }
 #Grupo de recursos para el application gateway
 resource "azurerm_resource_group" "natus-seg-rg" {
