@@ -86,7 +86,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location            = azurerm_resource_group.natus-devops-int.location
   size                = "Standard_F2"
   admin_username      = "natususer"
-  admin_password      = "n4tu5"
+  admin_password      = "N4tu5!"
   network_interface_ids = [
     azurerm_network_interface.network-interface.id,
   ]
