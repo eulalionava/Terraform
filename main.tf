@@ -69,6 +69,17 @@ resource "azurerm_bastion_host" "bastion" {
     public_ip_address_id = azurerm_public_ip.bas.id
   }
 }
+resource "azurerm_network_interface" "network-interface" {
+  name                = "agent-nic"
+  location            = azurerm_resource_group.natus-devops-int.location
+  resource_group_name = azurerm_resource_group.natus-devops-int.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.subnet.id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
 #Grupo de recursos para el application gateway
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
