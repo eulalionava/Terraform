@@ -38,7 +38,26 @@ resource "azurerm_subnet" "subnet-bastion" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
-
+#Grupo de recursos para el agente
+resource "azurerm_resource_group" "natus-devops-int" {
+  name     = "natus-devops-int"
+  location = var.location
+  
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
+}
+resource "azurerm_public_ip" "bas" {
+  name                = "natus-bas01"
+  location            = azurerm_resource_group.natus-devops-int.location
+  resource_group_name = azurerm_resource_group.natus-devops-int.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 #Grupo de recursos para el application gateway
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
