@@ -402,7 +402,7 @@ resource "azurerm_private_endpoint" "kv" {
 
 #BD
 resource "azurerm_mssql_server" "sqlserver" {
-  name                         = "sqlserver01"
+  name                         = "sqlserver02"
   resource_group_name          = azurerm_resource_group.natus-aks.name
   location                     = azurerm_resource_group.natus-aks.location
   version                      = "12.0"
