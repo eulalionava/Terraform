@@ -354,7 +354,7 @@ resource "azurerm_key_vault" "kv" {
   name                = "kv-natus01"
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
-  tenant_id           = data.azurerm_client_config.natus-aks.tenant_id
+  tenant_id           = var.tenant
 
   sku_name = "standard"
 
