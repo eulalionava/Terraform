@@ -231,7 +231,7 @@ resource "azurerm_application_gateway" "appgw" {
     ]
   }
 }
-}
+
 #Grupo de recursos para aks
 resource "azurerm_resource_group" "natus-aks" {
   name     = "natus-aks"
