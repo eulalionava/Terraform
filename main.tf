@@ -51,12 +51,6 @@ resource "azurerm_subnet" "global" {
   address_prefixes                          = ["10.0.4.0/24"]
   private_endpoint_network_policies_enabled = true
 }
-resource "azurerm_subnet" "aks" {
-  name                                      = "subnet-aks"
-  resource_group_name                       = azurerm_resource_group.VNET-RG.name
-  virtual_network_name                      = azurerm_virtual_network.vnet.name
-  address_prefixes                          = ["10.0.5.0/24"]
-}
 #Grupo de recursos para el agente
 resource "azurerm_resource_group" "natus-devops-int" {
   name     = "natus-devops-int"
@@ -223,21 +217,7 @@ resource "azurerm_application_gateway" "appgw" {
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
   }
-  lifecycle {
-    ignore_changes = [
-      tags,
-      backend_address_pool,
-      backend_http_settings,
-      frontend_port,
-      http_listener,
-      probe,
-      redirect_configuration,
-      request_routing_rule,
-      ssl_certificate
-    ]
-  }
 }
-
 #Grupo de recursos para aks
 resource "azurerm_resource_group" "natus-aks" {
   name     = "natus-aks"
@@ -327,61 +307,28 @@ resource "azurerm_user_assigned_identity" "pod" {
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
 }
-#identity roles
-resource "azurerm_role_assignment" "dns_contributor" {
-  scope                = azurerm_private_dns_zone.aks.id
-  role_definition_name = "Private DNS Zone Contributor"
-  principal_id         = azurerm_user_assigned_identity.aks.principal_id
-}
-resource "azurerm_role_assignment" "network_contributor" {
-  scope                = azurerm_virtual_network.vnet.id
-  role_definition_name = "Network Contributor"
-  principal_id         = azurerm_user_assigned_identity.aks.principal_id
-}
-resource "azurerm_role_assignment" "acr" {
-  scope                = azurerm_container_registry.acr.id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
-}
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
-  dns_prefix          = "aks-pvaks-cac-001"
-  private_cluster_enabled    = true
-  private_dns_zone_id   = azurerm_private_dns_zone.aks.id
+  dns_prefix          = "exampleaks1"
 
   default_node_pool {
     name       = "default"
     node_count = 1
     vm_size    = "Standard_D2_v2"
-    vnet_subnet_id = azurerm_subnet.aks.id
 
     enable_auto_scaling = true
     min_count           = 1
     max_count           = 3
   }
   identity {
-    type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.aks.id]
+    type = "SystemAssigned"
   }
   
   network_profile {
     network_plugin = "azure"
-    service_cidr     = "10.1.0.0/16"
-    dns_service_ip     = "10.1.3.4"
-    docker_bridge_cidr = "172.16.0.1/16"
   }
-  ingress_application_gateway {
-    gateway_id = azurerm_application_gateway.appgw.id
-  }
-  oms_agent {
-    log_analytics_workspace_id = azurerm_log_analytics_workspace.log.id
-  }
-    depends_on = [
-    azurerm_role_assignment.network_contributor,
-    azurerm_role_assignment.dns_contributor
-  ]
   tags = {
     Environment = "Develop"
     Department  = "EH"
