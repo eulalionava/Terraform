@@ -296,6 +296,17 @@ resource "azurerm_private_dns_zone_virtual_network_link" "aks1" {
   private_dns_zone_name = azurerm_private_dns_zone.aks.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
+#identity
+resource "azurerm_user_assigned_identity" "aks" {
+  name                = "id-aks01"
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  location            = azurerm_resource_group.natus-aks.location
+}
+resource "azurerm_user_assigned_identity" "pod" {
+  name                = "id-pod01"
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  location            = azurerm_resource_group.natus-aks.location
+}
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
