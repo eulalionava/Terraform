@@ -417,7 +417,7 @@ resource "azurerm_mssql_database" "mysql" {
   max_size_gb    = 1
   read_scale     = true
   sku_name       = "Basic"
-  zone_redundant = true
+  zone_redundant = false
   enclave_type   = "VBS"
 
   tags = {
