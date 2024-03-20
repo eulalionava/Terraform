@@ -369,7 +369,19 @@ resource "azurerm_kubernetes_cluster" "aks" {
   network_profile {
     network_plugin = "azure"
     service_cidr     = "10.1.0.0/16"
+    dns_service_ip     = "10.1.3.4"
+    docker_bridge_cidr = "172.16.0.1/16"
   }
+  ingress_application_gateway {
+    gateway_id = azurerm_application_gateway.appgw.id
+  }
+  oms_agent {
+    log_analytics_workspace_id = azurerm_log_analytics_workspace.log.id
+  }
+    depends_on = [
+    azurerm_role_assignment.network_contributor,
+    azurerm_role_assignment.dns_contributor
+  ]
   tags = {
     Environment = "Develop"
     Department  = "EH"
