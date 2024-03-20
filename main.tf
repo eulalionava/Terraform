@@ -307,6 +307,32 @@ resource "azurerm_user_assigned_identity" "pod" {
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
 }
+#identity roles
+resource "azurerm_role_assignment" "dns_contributor" {
+  scope                = azurerm_private_dns_zone.aks.id
+  role_definition_name = "Private DNS Zone Contributor"
+  principal_id         = azurerm_user_assigned_identity.aks.principal_id
+}
+resource "azurerm_role_assignment" "network_contributor" {
+  scope                = azurerm_virtual_network.vnet.id
+  role_definition_name = "Network Contributor"
+  principal_id         = azurerm_user_assigned_identity.aks.principal_id
+}
+resource "azurerm_role_assignment" "acr" {
+  scope                = azurerm_container_registry.acr.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+resource "azurerm_role_assignment" "agw" {
+  scope                = azurerm_resource_group.natus-seg-rg.id
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_kubernetes_cluster.aks.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
+}
+resource "azurerm_role_assignment" "monitoring" {
+  scope                = azurerm_kubernetes_cluster.aks.id
+  role_definition_name = "Monitoring Metrics Publisher"
+  principal_id         = azurerm_kubernetes_cluster.aks.oms_agent[0].oms_agent_identity[0].object_id
+}
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
