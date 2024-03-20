@@ -51,6 +51,12 @@ resource "azurerm_subnet" "global" {
   address_prefixes                          = ["10.0.4.0/24"]
   private_endpoint_network_policies_enabled = true
 }
+resource "azurerm_subnet" "aks" {
+  name                                      = "subnet-aks"
+  resource_group_name                       = azurerm_resource_group.VNET-RG.name
+  virtual_network_name                      = azurerm_virtual_network.vnet.name
+  address_prefixes                          = ["10.0.5.0/24"]
+}
 #Grupo de recursos para el agente
 resource "azurerm_resource_group" "natus-devops-int" {
   name     = "natus-devops-int"
@@ -337,33 +343,27 @@ resource "azurerm_role_assignment" "acr" {
   role_definition_name = "AcrPull"
   principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
 }
-resource "azurerm_role_assignment" "agw" {
-  scope                = azurerm_resource_group.natus-seg-rg.id
-  role_definition_name = "Contributor"
-  principal_id         = azurerm_kubernetes_cluster.aks.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
-}
-resource "azurerm_role_assignment" "monitoring" {
-  scope                = azurerm_kubernetes_cluster.aks.id
-  role_definition_name = "Monitoring Metrics Publisher"
-  principal_id         = azurerm_kubernetes_cluster.aks.oms_agent[0].oms_agent_identity[0].object_id
-}
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
-  dns_prefix          = "exampleaks1"
+  dns_prefix          = "aks-pvaks-cac-001"
+  private_cluster_enabled    = true
+  private_dns_zone_id   = azurerm_private_dns_zone.aks.id
 
   default_node_pool {
     name       = "default"
     node_count = 1
     vm_size    = "Standard_D2_v2"
+    vnet_subnet_id = azurerm_subnet.aks.id
 
     enable_auto_scaling = true
     min_count           = 1
     max_count           = 3
   }
   identity {
-    type = "SystemAssigned"
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.aks.id]
   }
   
   network_profile {
