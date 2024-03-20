@@ -359,7 +359,7 @@ resource "azurerm_key_vault" "kv" {
   sku_name = "standard"
 
   access_policy {
-    tenant_id = data.azurerm_client_config.natus-aks.tenant_id
+    tenant_id = var.tenant
     object_id = azurerm_user_assigned_identity.pod.principal_id
 
     secret_permissions = [
