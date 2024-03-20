@@ -370,7 +370,7 @@ resource "azurerm_key_vault" "kv" {
 
 resource "azurerm_private_dns_zone" "kv" {
   name                = "privatelink.vaultcore.azure.net"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = azurerm_resource_group.natus-aks.name
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "kv1" {
