@@ -217,6 +217,20 @@ resource "azurerm_application_gateway" "appgw" {
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
   }
+  lifecycle {
+    ignore_changes = [
+      tags,
+      backend_address_pool,
+      backend_http_settings,
+      frontend_port,
+      http_listener,
+      probe,
+      redirect_configuration,
+      request_routing_rule,
+      ssl_certificate
+    ]
+  }
+}
 }
 #Grupo de recursos para aks
 resource "azurerm_resource_group" "natus-aks" {
