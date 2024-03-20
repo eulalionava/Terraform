@@ -384,7 +384,7 @@ resource "azurerm_private_endpoint" "kv" {
   name                = "pe-vault-cac-001"
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
-  subnet_id           = azurerm_subnet.aks.id
+  subnet_id           = azurerm_subnet.global.id
 
   private_service_connection {
     name                           = "psc-vault01"
