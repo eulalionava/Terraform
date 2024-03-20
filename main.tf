@@ -46,7 +46,7 @@ resource "azurerm_subnet" "subnet-agent" {
 }
 resource "azurerm_subnet" "global" {
   name                                      = "snet-global"
-  resource_group_name                       = azurerm_resource_group.vnet-rg.name
+  resource_group_name                       = azurerm_resource_group.VNET-RG.name
   virtual_network_name                      = azurerm_virtual_network.vnet.name
   address_prefixes                          = ["10.0.4.0/24"]
   private_endpoint_network_policies_enabled = true
