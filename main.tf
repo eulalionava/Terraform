@@ -416,7 +416,7 @@ resource "azurerm_mssql_database" "mysql" {
   license_type   = "LicenseIncluded"
   max_size_gb    = 4
   read_scale     = true
-  sku_name       = "S0"
+  sku_name       = "Basic"
   zone_redundant = true
   enclave_type   = "VBS"
 
