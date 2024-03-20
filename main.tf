@@ -401,47 +401,11 @@ resource "azurerm_private_endpoint" "kv" {
 
 
 #BD
-
-resource "azurerm_storage_account" "storagenatus" {
-  name                     = "storagenatus"
-  resource_group_name      = azurerm_resource_group.natus-aks.name
-  location                 = azurerm_resource_group.natus-aks.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-
 resource "azurerm_mssql_server" "sqlserver" {
-  name                         = "sqlserver"
+  name                         = "sqlserver01"
   resource_group_name          = azurerm_resource_group.natus-aks.name
   location                     = azurerm_resource_group.natus-aks.location
   version                      = "12.0"
-  administrator_login          = "admin"
-  administrator_login_password = "admin"
-}
-
-resource "azurerm_mssql_database" "sqlbd" {
-  name           = "example-bd"
-  server_id      = azurerm_mssql_server.sqlserver.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 4
-  read_scale     = true
-  sku_name       = "S0"
-  zone_redundant = true
-  enclave_type   = "VBS"
-
-  tags = {
-    foo = "bar"
-    Environment = "Develop"
-    Department  = "EH"
-    Createdby   = "Terraform"
-    EmailOwner  = "acardenas@readymind.ms"
-    Client      = "Natus"
-  }
-
-  # prevent the possibility of accidental data loss
-  lifecycle {
-    prevent_destroy = true
-  }
+  administrator_login          = "4dm1n157r470r"
+  administrator_login_password = "4-v3ry-53cr37-p455w0rd"
 }
