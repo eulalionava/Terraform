@@ -263,7 +263,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "acr1" {
 resource "azurerm_private_endpoint" "acr" {
   name                = "pe-acr01"
   location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.nauts-aks.name
+  resource_group_name = azurerm_resource_group.natus-aks.name
   subnet_id           = azurerm_subnet.global.id
 
   private_service_connection {
