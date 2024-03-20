@@ -293,7 +293,7 @@ resource "azurerm_private_dns_zone" "aks" {
 resource "azurerm_private_dns_zone_virtual_network_link" "aks1" {
   name                  = "pdz-aks01"
   resource_group_name   = azurerm_resource_group.natus-aks.name
-  private_dns_zone_name = azurerm_private_dns_zone.natus-aks.name
+  private_dns_zone_name = azurerm_private_dns_zone.aks.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
 resource "azurerm_kubernetes_cluster" "aks" {
