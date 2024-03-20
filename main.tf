@@ -312,6 +312,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
   dns_prefix          = "exampleaks1"
+  private_cluster_public_fqdn_enabled = false
 
   default_node_pool {
     name       = "default"
