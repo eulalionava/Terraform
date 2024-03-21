@@ -390,12 +390,18 @@ resource "azurerm_kubernetes_cluster" "aks" {
     Client      = "Natus"
   }
 }
-  resource "azurerm_role_assignment" "example" {
-  principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
-  role_definition_name             = "AcrPull"
-  scope                            = azurerm_container_registry.acr.id
-  skip_service_principal_aad_check = true
-  }
+resource "azurerm_role_assignment" "acr_role_assignment" {
+  scope                = azurerm_container_registry.acr.id
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+  role_definition_name = "AcrPull"
+}
+
+#  resource "azurerm_role_assignment" "example" {
+#  principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+#  role_definition_name             = "AcrPull"
+#  scope                            = azurerm_container_registry.acr.id
+#  skip_service_principal_aad_check = true
+#  }
 
 output "client_certificate" {
   value     = azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate
