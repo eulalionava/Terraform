@@ -327,10 +327,7 @@ resource "azurerm_private_endpoint" "kv" {
     name                 = "pdzg-vault-cac-001"
     private_dns_zone_ids = [azurerm_private_dns_zone.kv.id]
   }
-  key_management_service {
-    key_vault_key_id = azurerm_key_vault_key.kv.id
-    key_vault_network_access  = "Private"
-  }
+  
 }
 
 #AKS
