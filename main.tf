@@ -332,7 +332,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
   key_management_service {
     key_vault_key_id = azurerm_key_vault.kv.id
-    key_vault_network_access  = Private
+    key_vault_network_access  = "Private"
   }
 
   tags = {
