@@ -359,6 +359,13 @@ resource "azurerm_user_assigned_identity" "pod" {
   resource_group_name = azurerm_resource_group.natus-aks.name
   location            = azurerm_resource_group.natus-aks.location
 }
+#identity role
+resource "azurerm_role_assignment" "dns_contributor" {
+  scope                = azurerm_private_dns_zone.aks.id
+  role_definition_name = "Private DNS Zone Contributor"
+  principal_id         = azurerm_user_assigned_identity.aks.principal_id
+}
+
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks1"
   location            = azurerm_resource_group.natus-aks.location
@@ -389,11 +396,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     EmailOwner  = "acardenas@readymind.ms"
     Client      = "Natus"
   }
-}
-resource "azurerm_role_assignment" "acr_role_assignment" {
-  scope                = azurerm_container_registry.acr.id
-  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
-  role_definition_name = "AcrPull"
 }
 
 #  resource "azurerm_role_assignment" "example" {
