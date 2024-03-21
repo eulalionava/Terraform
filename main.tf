@@ -278,6 +278,57 @@ resource "azurerm_private_endpoint" "acr" {
     private_dns_zone_ids = [azurerm_private_dns_zone.acr.id]
   }
 }
+#KV
+resource "azurerm_key_vault" "kv" {
+  name                = "kv-natus01"
+  location            = azurerm_resource_group.natus-aks.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  tenant_id           = var.tenant
+  public_network_access_enabled = false
+
+  sku_name = "standard"
+
+  access_policy {
+    tenant_id = var.tenant
+    object_id = azurerm_user_assigned_identity.pod.principal_id
+
+    secret_permissions = [
+      "Get", "List",
+    ]
+  }
+}
+
+resource "azurerm_private_dns_zone" "kv" {
+  name                = "privatelink.vaultcore.azure.net"
+  resource_group_name = azurerm_resource_group.natus-aks.name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "kv1" {
+  name                  = "pdznl-vault-cac-001"
+  resource_group_name   = azurerm_resource_group.natus-aks.name
+  private_dns_zone_name = azurerm_private_dns_zone.kv.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+}
+
+resource "azurerm_private_endpoint" "kv" {
+  name                = "pe-vault-cac-001"
+  location            = azurerm_resource_group.natus-aks.location
+  resource_group_name = azurerm_resource_group.natus-aks.name
+  subnet_id           = azurerm_subnet.global.id
+
+  private_service_connection {
+    name                           = "psc-vault01"
+    private_connection_resource_id = azurerm_key_vault.kv.id
+    subresource_names              = ["vault"]
+    is_manual_connection           = false
+  }
+
+  private_dns_zone_group {
+    name                 = "pdzg-vault-cac-001"
+    private_dns_zone_ids = [azurerm_private_dns_zone.kv.id]
+  }
+}
+
 #AKS
 resource "azurerm_log_analytics_workspace" "log" {
   name                = "log-aks01"
@@ -331,7 +382,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin = "azure"
   }
   key_management_service {
-    key_vault_key_id = azurerm_key_vault.kv.id
+    key_vault_key_id = azurerm_key_vault_key.kv.id
     key_vault_network_access  = "Private"
   }
 
@@ -355,56 +406,6 @@ output "kube_config" {
   sensitive = true
 }
 
-#KV
-resource "azurerm_key_vault" "kv" {
-  name                = "kv-natus01"
-  location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.natus-aks.name
-  tenant_id           = var.tenant
-  public_network_access_enabled = false
-
-  sku_name = "standard"
-
-  access_policy {
-    tenant_id = var.tenant
-    object_id = azurerm_user_assigned_identity.pod.principal_id
-
-    secret_permissions = [
-      "Get", "List",
-    ]
-  }
-}
-
-resource "azurerm_private_dns_zone" "kv" {
-  name                = "privatelink.vaultcore.azure.net"
-  resource_group_name = azurerm_resource_group.natus-aks.name
-}
-
-resource "azurerm_private_dns_zone_virtual_network_link" "kv1" {
-  name                  = "pdznl-vault-cac-001"
-  resource_group_name   = azurerm_resource_group.natus-aks.name
-  private_dns_zone_name = azurerm_private_dns_zone.kv.name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
-}
-
-resource "azurerm_private_endpoint" "kv" {
-  name                = "pe-vault-cac-001"
-  location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.natus-aks.name
-  subnet_id           = azurerm_subnet.global.id
-
-  private_service_connection {
-    name                           = "psc-vault01"
-    private_connection_resource_id = azurerm_key_vault.kv.id
-    subresource_names              = ["vault"]
-    is_manual_connection           = false
-  }
-
-  private_dns_zone_group {
-    name                 = "pdzg-vault-cac-001"
-    private_dns_zone_ids = [azurerm_private_dns_zone.kv.id]
-  }
-}
 
 
 #BD
