@@ -330,6 +330,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
   network_profile {
     network_plugin = "azure"
   }
+  key_management_service {
+    key_vault_key_id = azurerm_key_vault.kv.id
+    key_vault_network_access  = Private
+  }
+
   tags = {
     Environment = "Develop"
     Department  = "EH"
@@ -356,6 +361,7 @@ resource "azurerm_key_vault" "kv" {
   location            = azurerm_resource_group.natus-aks.location
   resource_group_name = azurerm_resource_group.natus-aks.name
   tenant_id           = var.tenant
+  public_network_access_enabled = false
 
   sku_name = "standard"
 
