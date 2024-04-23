@@ -279,24 +279,24 @@ resource "azurerm_private_endpoint" "acr" {
   }
 }
 #KV
-resource "azurerm_key_vault" "kv" {
-  name                = "kv-natus01"
-  location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.natus-aks.name
-  tenant_id           = var.tenant
-  public_network_access_enabled = false
+#resource "azurerm_key_vault" "kv" {
+#  name                = "kv-natus01"
+#  location            = azurerm_resource_group.natus-aks.location
+#  resource_group_name = azurerm_resource_group.natus-aks.name
+#  tenant_id           = var.tenant
+#  public_network_access_enabled = false
 
-  sku_name = "standard"
+#  sku_name = "standard"
 
-  access_policy {
-    tenant_id = var.tenant
-    object_id = azurerm_user_assigned_identity.pod.principal_id
-
-    secret_permissions = [
-      "Get", "List",
-    ]
-  }
-}
+#  access_policy {
+#    tenant_id = var.tenant
+#    object_id = azurerm_user_assigned_identity.pod.principal_id
+#
+#    secret_permissions = [
+#      "Get", "List",
+#    ]
+#  }
+#}
 
 resource "azurerm_private_dns_zone" "kv" {
   name                = "privatelink.vaultcore.azure.net"
