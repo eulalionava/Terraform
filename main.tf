@@ -310,25 +310,25 @@ resource "azurerm_private_dns_zone_virtual_network_link" "kv1" {
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
 
-resource "azurerm_private_endpoint" "kv" {
-  name                = "pe-vault-cac-001"
-  location            = azurerm_resource_group.natus-aks.location
-  resource_group_name = azurerm_resource_group.natus-aks.name
-  subnet_id           = azurerm_subnet.global.id
-
-  private_service_connection {
-    name                           = "psc-vault01"
-    private_connection_resource_id = azurerm_key_vault.kv.id
-    subresource_names              = ["vault"]
-    is_manual_connection           = false
-  }
-
-  private_dns_zone_group {
-    name                 = "pdzg-vault-cac-001"
-    private_dns_zone_ids = [azurerm_private_dns_zone.kv.id]
-  }
-  
-}
+#resource "azurerm_private_endpoint" "kv" {
+#  name                = "pe-vault-cac-001"
+#  location            = azurerm_resource_group.natus-aks.location
+#  resource_group_name = azurerm_resource_group.natus-aks.name
+#  subnet_id           = azurerm_subnet.global.id
+#
+#  private_service_connection {
+#    name                           = "psc-vault01"
+#    private_connection_resource_id = azurerm_key_vault.kv.id
+#    subresource_names              = ["vault"]
+#    is_manual_connection           = false
+#  }
+#
+#  private_dns_zone_group {
+#    name                 = "pdzg-vault-cac-001"
+#    private_dns_zone_ids = [azurerm_private_dns_zone.kv.id]
+#  }
+#  
+#}
 
 #AKS
 resource "azurerm_log_analytics_workspace" "log" {
