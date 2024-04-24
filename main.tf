@@ -18,7 +18,7 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.VNET-RG.name
 
   
-  ddos_protection_plan=null
+  ddos_protection_plan_id = null
 
   tags = {
     Environment = "Develop"
