@@ -17,6 +17,11 @@ resource "azurerm_virtual_network" "vnet" {
   location            = azurerm_resource_group.VNET-RG.location
   resource_group_name = azurerm_resource_group.VNET-RG.name
 
+  ddos_protection_plan {
+    enable = false
+    id = ''
+  }
+
   tags = {
     Environment = "Develop"
     Department  = "EH"
