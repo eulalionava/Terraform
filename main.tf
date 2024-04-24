@@ -19,6 +19,7 @@ resource "azurerm_virtual_network" "vnet" {
 
   ddos_protection_plan {
     enable = false
+    id = "/subscriptions/12345678-90ab-cdef-1234-567890abcdef/resourceGroups/example-resources/providers/Microsoft.Network/ddosProtectionPlans/example-ddos-plan"
   }
 
   tags = {
