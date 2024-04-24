@@ -19,7 +19,6 @@ resource "azurerm_virtual_network" "vnet" {
 
   ddos_protection_plan {
     enable = false
-    id = "placeholder"
   }
 
   tags = {
