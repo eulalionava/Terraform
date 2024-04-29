@@ -29,7 +29,7 @@ jobs:
       backendServiceArm: 'TESTLABS'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmContainerName: 'multistagecontainer'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
@@ -44,13 +44,10 @@ jobs:
       command: 'plan'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
+      publishPlanResults: 'plan_results.json'
     displayName: "Terraform plan"
-#  - task: PublishBuildArtifacts@1
-#    inputs:
-#      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#      ArtifactName: 'drop'
-#      publishLocation: 'Container'
-#    displayName: "copy files"
+
   - task: CopyFiles@2
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)'
@@ -70,7 +67,7 @@ jobs:
       backendServiceArm: 'TESTLABS'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmContainerName: 'multistagecontainer'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
@@ -79,10 +76,13 @@ jobs:
       command: 'plan'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
+      publishPlanResults: 'plan_results.json'
     displayName: "Terraform plan"
   - task: TerraformCLI@1
     inputs:
       command: 'apply'
       environmentServiceName: 'TESTLABS'
       allowTelemetryCollection: true
+      commandOptions: '-lock=false'
     displayName: "Terraform Apply"
