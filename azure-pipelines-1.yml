@@ -13,3 +13,29 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+- task: TerraformCLI@1
+  inputs:
+    command: 'init'
+    backendType: 'azurerm'
+    backendServiceArm: 'TESTLABS'
+    backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
+    backendAzureRmStorageAccountName: 'storageterraform3'
+    backendAzureRmContainerName: 'storagedemo'
+    backendAzureRmKey: '$(keystorage)'
+    allowTelemetryCollection: true
+- task: TerraformCLI@1
+  inputs:
+    command: 'validate'
+    allowTelemetryCollection: true
+- task: TerraformCLI@1
+  inputs:
+    command: 'plan'
+    allowTelemetryCollection: true
+    publishPlanResults: 'resultado.txt'
+- task: TerraformCLI@1
+  inputs:
+    command: 'apply'
+    allowTelemetryCollection: true
