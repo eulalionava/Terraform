@@ -411,7 +411,7 @@ output "kube_config" {
 
 
 
-#BD
+/* #BD
 resource "azurerm_mssql_server" "sqlserver" {
   name                         = "sqlserver-natus01"
   resource_group_name          = azurerm_resource_group.natus-aks.name
@@ -439,4 +439,4 @@ resource "azurerm_mssql_database" "mysql" {
   lifecycle {
     prevent_destroy = true
   }
-}
+} */
