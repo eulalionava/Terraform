@@ -18,10 +18,7 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.VNET-RG.name
 
   
-  ddos_protection_plan {
-    enable = false
-    id = "/subscriptions/12345678-90ab-cdef-1234-567890abcdef/resourceGroups/example-resources/providers/Microsoft.Network/ddosProtectionPlans/example-ddos-plan"
-  }
+
 
   tags = {
     Environment = "Develop"
@@ -336,7 +333,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "kv1" {
 #  
 #}
 
-#AKS
+/* #AKS
 resource "azurerm_log_analytics_workspace" "log" {
   name                = "log-aks01"
   location            = azurerm_resource_group.natus-aks.location
@@ -409,7 +406,7 @@ output "kube_config" {
   sensitive = true
 }
 
-
+ */
 
 /* #BD
 resource "azurerm_mssql_server" "sqlserver" {
