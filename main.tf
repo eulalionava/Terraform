@@ -1,5 +1,5 @@
 #Grupo de recursos para las vnet
-
+/*
 resource "azurerm_resource_group" "VNET-RG" {
   name     = "VNET-RG"
   location = var.location
@@ -29,6 +29,7 @@ resource "azurerm_virtual_network" "vnet" {
     Client      = "Natus"
   }
 }
+*/
 /*
 resource "azurerm_subnet" "subnet" {
   name                 = "subnet01"
@@ -121,6 +122,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }  
 }
 */
+/*
 #Grupo de recursos para el application gateway
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
@@ -134,6 +136,7 @@ resource "azurerm_resource_group" "natus-seg-rg" {
     Client      = "Natus"
   }
 }
+*/
 /*
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
