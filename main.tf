@@ -251,7 +251,7 @@ resource "azurerm_container_registry" "acr" {
     EmailOwner  = "acardenas@readymind.ms"
     Client      = "Natus"
   }  
-  
+/*  
 }
 resource "azurerm_private_dns_zone" "acr" {
   name                = "privatelink.azurecr.io"
@@ -282,6 +282,7 @@ resource "azurerm_private_endpoint" "acr" {
     private_dns_zone_ids = [azurerm_private_dns_zone.acr.id]
   }
 }
+*/
 #KV
 #resource "azurerm_key_vault" "kv" {
 #  name                = "kv-natus01"
