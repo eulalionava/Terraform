@@ -1,5 +1,5 @@
 #Grupo de recursos para las vnet
-/*
+
 resource "azurerm_resource_group" "VNET-RG" {
   name     = "VNET-RG"
   location = var.location
@@ -301,7 +301,7 @@ resource "azurerm_private_endpoint" "acr" {
 #    ]
 #  }
 #}
-
+/*
 resource "azurerm_private_dns_zone" "kv" {
   name                = "privatelink.vaultcore.azure.net"
   resource_group_name = azurerm_resource_group.natus-aks.name
