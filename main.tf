@@ -285,7 +285,7 @@ resource "azurerm_private_endpoint" "acr" {
   }
 }
 */
-*/
+
 #KV
 #resource "azurerm_key_vault" "kv" {
 #  name                = "kv-natus01"
