@@ -68,7 +68,7 @@ resource "azurerm_resource_group" "natus-devops-int" {
     Client      = "Natus"
   }
 }
-resource "azurerm_public_ip" "bas" {
+/*resource "azurerm_public_ip" "bas" {
   name                = "natus-bas01"
   location            = azurerm_resource_group.natus-devops-int.location
   resource_group_name = azurerm_resource_group.natus-devops-int.name
@@ -120,6 +120,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }  
 }
+*/
 #Grupo de recursos para el application gateway
 resource "azurerm_resource_group" "natus-seg-rg" {
   name     = "natus-seg-rg"
@@ -133,7 +134,7 @@ resource "azurerm_resource_group" "natus-seg-rg" {
     Client      = "Natus"
   }
 }
-
+/*
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
   resource_group_name = azurerm_resource_group.natus-seg-rg.name
@@ -283,6 +284,7 @@ resource "azurerm_private_endpoint" "acr" {
     private_dns_zone_ids = [azurerm_private_dns_zone.acr.id]
   }
 }
+*/
 */
 #KV
 #resource "azurerm_key_vault" "kv" {
