@@ -29,7 +29,7 @@ resource "azurerm_virtual_network" "vnet" {
     Client      = "Natus"
   }
 }
-
+/*
 resource "azurerm_subnet" "subnet" {
   name                 = "subnet01"
   resource_group_name  = azurerm_resource_group.VNET-RG.name
@@ -67,7 +67,7 @@ resource "azurerm_resource_group" "natus-devops-int" {
     EmailOwner  = "acardenas@readymind.ms"
     Client      = "Natus"
   }
-}
+}*/
 /*resource "azurerm_public_ip" "bas" {
   name                = "natus-bas01"
   location            = azurerm_resource_group.natus-devops-int.location
