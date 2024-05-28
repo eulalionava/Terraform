@@ -1,5 +1,5 @@
 module "Cliente1"{
-    source = "./Cliente1"
+    source = "./Cliente1/ResourceGroup"
     client_name = "NombreCliente1"
     location = "eastus"
 }
