@@ -2,7 +2,7 @@ module "Cliente1"{
     source = "./Cliente1/ResourceGroup"
     client_name = "NombreCliente1" #coloque el nombre del cliente nuevo
     location = "eastus"
-    number = 1 
+    client_number = 1 
 }
 
 #Crear vm para agente
