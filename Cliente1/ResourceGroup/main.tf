@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg-hub" {
-  name     = "rsg-pef-hub-prd-${var.location}client_number-001"
+  name     = "rsg-pef-hub2-prd-${var.location}client_number-001"
   location = var.location
 }
 resource "azurerm_resource_group" "example" {
