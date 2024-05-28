@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "example" {
-  name     = "${client_name}-RG"
+  name     = var.client_name
   location = var.location
 }
