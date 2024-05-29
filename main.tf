@@ -3,13 +3,13 @@ locals {
   tenant        = "08c7a78d-587d-4487-962e-93c5fb54c7bf" #Agregue el tenant
   key_vault_manager = "7d7c8ee7-f410-4f01-9c33-3744f87ff4e8"  #objectId del administrador de KV
 }
-module "Cliente1_RG"{
+module "ResourceGroup"{
     source = "./ResourceGroup"
     client_name = local.client_name 
     location = local.location
     client_number = local.client_number
 }
-module "Cliente1_ACR"{
+module "ContainerRegistry"{
     source = "./ContainerRegistry"
     client_name = local.client_name
     location = local.location
