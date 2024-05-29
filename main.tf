@@ -10,7 +10,7 @@ module "ResourceGroup"{
 module "ContainerRegistry"{
     source = "./ContainerRegistry"
     location = local.location
-    resource_group_name = module.Cliente1_RG.rg_aks_name_out
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
 
 #Crear vm para agente
