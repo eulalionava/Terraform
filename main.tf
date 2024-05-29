@@ -15,7 +15,7 @@ module "Cliente1_ACR"{
     client_name = local.client_name
     location = local.location
     client_number = local.client_number
-    resource_group_name = module.Cliente1_RG.rg_pef_name_out
+    resource_group_name = module.Cliente1_RG.rg_aks_name_out
 }
 
 #Crear vm para agente
