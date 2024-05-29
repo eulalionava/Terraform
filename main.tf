@@ -3,6 +3,7 @@ locals {
   client_name   = "NombreCliente1" #Agregue el nombre del cliente
   client_number = 1                #Agregue el numero de cliente
   location      = "eastus"         #Agregue la region
+  key_vault_manager = "7d7c8ee7-f410-4f01-9c33-3744f87ff4e8"  #objectId del administrador de KV
 }
 module "Cliente1_RG"{
     source = "./Cliente1/ResourceGroup"
