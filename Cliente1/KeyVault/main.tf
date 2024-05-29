@@ -9,7 +9,7 @@ resource "azurerm_key_vault" "keyvault" {
 
   access_policy {
     tenant_id = var.tenant
-    object_id = data.azurerm_client_config.current.object_id
+    object_id = var.key_vault_manager
 
     key_permissions = [
       "create",
