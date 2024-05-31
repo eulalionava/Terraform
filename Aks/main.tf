@@ -34,7 +34,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     vnet_subnet_id  = var.vnet_subnet_id
   }
   
-  depends_on = [
+  /*depends_on = [
     azurerm_role_assignment.example,
-  ]
+  ]*/
 }
