@@ -15,12 +15,6 @@ resource "azurerm_role_assignment" "example" {
   principal_id         = azurerm_user_assigned_identity.example.principal_id
 }
 
-module "Vnet"{
-    source = "./Vnet"
-    location = local.location
-    resource_group_name = module.ResourceGroup.rg_aks_name_out
-}
-
 resource "azurerm_kubernetes_cluster" "example" {
   source = "./Vnet"
   name                    = "aksexamplewithprivatednszone1"
@@ -34,7 +28,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name            = "default"
     node_count      = 3
     vm_size         = "Standard_D2_v2"
-    vnet_subnet_id  = module.Vnet.subnet_id_out
+    vnet_subnet_id  = Vnet.subnet_id_out
   }
   
   depends_on = [
