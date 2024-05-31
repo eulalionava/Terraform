@@ -28,7 +28,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name            = "default"
     node_count      = 3
     vm_size         = "Standard_D2_v2"
-    vnet_subnet_id  = module.Vnet.vnet_subnet_id
+    vnet_subnet_id  = module.Vnet.subnet_id
   }
   
   depends_on = [
