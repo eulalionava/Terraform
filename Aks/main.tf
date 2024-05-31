@@ -1,5 +1,5 @@
 resource "azurerm_private_dns_zone" "example" {
-  name                = "privatelink.eastus2.azmk8s.io"
+  name                = "privatelink.eastus.azmk8s.io"
   resource_group_name = var.resource_group_name
 }
 
@@ -27,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name            = "default"
     node_count      = 3
     vm_size         = "Standard_D2_v2"
-    vnet_subnet_id  = azurerm_subnet.example.id
+    vnet_subnet_id  = module.vnet_subnet_id
   }
   
   depends_on = [
