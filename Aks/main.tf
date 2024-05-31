@@ -16,7 +16,6 @@ resource "azurerm_role_assignment" "example" {
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
-  source = "./Vnet"
   name                    = "aksexamplewithprivatednszone1"
   location                = var.location
   resource_group_name     = var.resource_group_name
@@ -28,7 +27,7 @@ resource "azurerm_kubernetes_cluster" "example" {
     name            = "default"
     node_count      = 3
     vm_size         = "Standard_D2_v2"
-    vnet_subnet_id  = Vnet.subnet_id_out
+    vnet_subnet_id  = var.vnet_subnet_id
   }
   
   depends_on = [
