@@ -23,6 +23,10 @@ resource "azurerm_kubernetes_cluster" "example" {
   private_cluster_enabled = true
   private_dns_zone_id     = azurerm_private_dns_zone.example.id
 
+  identity {
+    type = "SystemAssigned"
+  }
+  
   default_node_pool {
     name            = "default"
     node_count      = 3
