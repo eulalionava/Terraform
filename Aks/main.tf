@@ -9,7 +9,7 @@ resource "azurerm_user_assigned_identity" "user_assigned" {
   location            = var.location
 }
 
-/resource "azurerm_role_assignment" "role_assignment" {
+resource "azurerm_role_assignment" "role_assignment" {
   scope                = azurerm_private_dns_zone.example.id
   role_definition_name = "Private DNS Zone Contributor"
   principal_id         = azurerm_user_assigned_identity.example.principal_id
