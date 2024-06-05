@@ -9,11 +9,11 @@ resource "azurerm_user_assigned_identity" "example" {
   location            = var.location
 }
 
-/*resource "azurerm_role_assignment" "example" {
+/resource "azurerm_role_assignment" "example" {
   scope                = azurerm_private_dns_zone.example.id
   role_definition_name = "Private DNS Zone Contributor"
   principal_id         = azurerm_user_assigned_identity.example.principal_id
-}*/
+}
 
 resource "azurerm_kubernetes_cluster" "example" {
   name                    = "aksexamplewithprivatednszone1"
