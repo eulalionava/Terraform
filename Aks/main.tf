@@ -10,9 +10,9 @@ resource "azurerm_user_assigned_identity" "user_assigned" {
 }
 
 resource "azurerm_role_assignment" "role_assignment" {
-  scope                = azurerm_private_dns_zone.example.id
+  scope                = azurerm_private_dns_zone.dns.id
   role_definition_name = "Private DNS Zone Contributor"
-  principal_id         = azurerm_user_assigned_identity.example.principal_id
+  principal_id         = azurerm_user_assigned_identity.user_assigned.principal_id
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
