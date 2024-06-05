@@ -1,5 +1,5 @@
 resource "azurerm_private_dns_zone" "dns" {
-  name                = "privatelink.eastus.azmk8s.io"
+  name                = "privatelink.terraform.eastus.azmk8s.io"
   resource_group_name = var.resource_group_name
 }
 
