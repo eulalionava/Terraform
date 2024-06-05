@@ -16,15 +16,16 @@ resource "azurerm_role_assignment" "role_assignment" {
 }
 
 resource "azurerm_kubernetes_cluster" "example" {
-  name                    = "aksexamplewithprivatednszone1"
+  name                    = "aks-example"
   location                = var.location
   resource_group_name     = var.resource_group_name
-  dns_prefix              = "aksexamplednsprefix1"
+  dns_prefix              = "aks-example"
   private_cluster_enabled = true
   private_dns_zone_id     = azurerm_private_dns_zone.dns.id
 
   identity {
-    type = "SystemAssigned"
+    type = "UserAssigned"
+    user_assigned_identity_id = azurerm_user_assigned_identity.user_assigned.id
   }
 
   default_node_pool {
