@@ -25,7 +25,9 @@ resource "azurerm_kubernetes_cluster" "example" {
 
   identity {
     type = "UserAssigned"
-    user_assigned_identity_id = azurerm_user_assigned_identity.user_assigned.id
+    user_assigned_identity_id{
+      id = azurerm_user_assigned_identity.user_assigned.id
+       }  
   }
 
   default_node_pool {
