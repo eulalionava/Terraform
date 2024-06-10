@@ -1,5 +1,5 @@
 resource "azurerm_key_vault" "keyvault" {
-  name                        = "kvt-pef-prd-${var.location}-001"
+  name                        = "kvt-pef-prd-${var.location}-002"
   location                    = var.location
   resource_group_name         = var.resource_group_name
   tenant_id                   = var.tenant
