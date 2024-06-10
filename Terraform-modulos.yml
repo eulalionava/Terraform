@@ -26,7 +26,7 @@ jobs:
     inputs:
       command: 'init'
       backendType: 'azurerm'
-      backendServiceArm: 'TESTLABS'
+      backendServiceArm: 'VisualStudioEnterpriseMPN-Conexion'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
       backendAzureRmContainerName: 'terraformcontainer'
@@ -42,7 +42,7 @@ jobs:
   - task: TerraformCLI@1
     inputs:
       command: 'plan'
-      environmentServiceName: 'TESTLABS'
+      environmentServiceName: 'VisualStudioEnterpriseMPN-Conexion'
       allowTelemetryCollection: true
       commandOptions: '-lock=false'
       publishPlanResults: 'plan_results.json'
@@ -64,7 +64,7 @@ jobs:
     inputs:
       command: 'init'
       backendType: 'azurerm'
-      backendServiceArm: 'TESTLABS'
+      backendServiceArm: 'VisualStudioEnterpriseMPN-Conexion'
       backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
       backendAzureRmStorageAccountName: 'storageterraform3'
       backendAzureRmContainerName: 'terraformcontainer'
@@ -82,7 +82,7 @@ jobs:
   - task: TerraformCLI@1
     inputs:
       command: 'apply'
-      environmentServiceName: 'TESTLABS'
+      environmentServiceName: 'VisualStudioEnterpriseMPN-Conexion'
       allowTelemetryCollection: true
       commandOptions: '-lock=false'
     displayName: "Terraform Apply"
