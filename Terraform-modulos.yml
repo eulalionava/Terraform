@@ -27,9 +27,9 @@ jobs:
       command: 'init'
       backendType: 'azurerm'
       backendServiceArm: 'VisualStudioEnterpriseMPN-Conexion'
-      backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
-      backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmResourceGroupName: 'Terraform'
+      backendAzureRmStorageAccountName: 'terrafomstatestorage'
+      backendAzureRmContainerName: 'estadoterraform'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
@@ -65,16 +65,16 @@ jobs:
       command: 'init'
       backendType: 'azurerm'
       backendServiceArm: 'VisualStudioEnterpriseMPN-Conexion'
-      backendAzureRmResourceGroupName: 'RG-TESTLABS-RM'
-      backendAzureRmStorageAccountName: 'storageterraform3'
-      backendAzureRmContainerName: 'terraformcontainer'
+      backendAzureRmResourceGroupName: 'Terraform'
+      backendAzureRmStorageAccountName: 'terrafomstatestorage'
+      backendAzureRmContainerName: 'estadoterraform'
       backendAzureRmKey: $(STORAGE_ACCOUNT_KEY)
       allowTelemetryCollection: true
     displayName: 'Terraform init'
   - task: TerraformCLI@1
     inputs:
       command: 'plan'
-      environmentServiceName: 'TESTLABS'
+      environmentServiceName: 'VisualStudioEnterpriseMPN-Conexion'
       allowTelemetryCollection: true
       commandOptions: '-lock=false'
       publishPlanResults: 'plan_results.json'
