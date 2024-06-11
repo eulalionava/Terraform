@@ -11,7 +11,7 @@ resource "azurerm_virtual_network" "Api" {
   address_space       = ["10.130.0.0/24"]
 }
 resource "azurerm_virtual_network" "k8" {
-  name                = "k8"
+  name                = "vnw-k8s-prd-eastus-001"
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.140.0.0/16"]
