@@ -12,11 +12,11 @@ module "Vnet"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
-module "ContainerRegistry"{
-    source = "./ContainerRegistry"
-    location = local.location
-    resource_group_name = module.ResourceGroup.rg_aks_name_out
-}
+// module "ContainerRegistry"{
+//     source = "./ContainerRegistry"
+//     location = local.location
+//     resource_group_name = module.ResourceGroup.rg_aks_name_out
+// }
 
 /*module "KeyVault"{
     source = "./KeyVault"
