@@ -16,6 +16,7 @@ resource "azurerm_virtual_network" "k8" {
   resource_group_name = var.resource_group_name
   address_space       = ["10.140.0.0/16"]
 }
+####subnets####
 /*
 resource "azurerm_subnet" "example" {
   name                 = "aks-subnet2"
