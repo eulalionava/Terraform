@@ -19,9 +19,9 @@ resource "azurerm_virtual_network" "k8" {
 
 ####subnets####
 
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "subnet" {
   name                 = "aks-subnet2"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.global.name
-  address_prefixes     = ["10.1.4.0/24"]
+  address_prefixes     = ["10.120.0.0/24"]
 }
