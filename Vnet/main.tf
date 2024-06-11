@@ -1,8 +1,14 @@
-resource "azurerm_virtual_network" "example" {
+resource "azurerm_virtual_network" "global" {
   name                = "example-network"
   location            = var.location
   resource_group_name = var.resource_group_name
-  address_space       = ["10.1.0.0/16"]
+  address_space       = ["10.120.0.0/24"]
+}
+resource "azurerm_virtual_network" "global" {
+  name                = "example-network"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  address_space       = ["10.120.0.0/24"]
 }
 
 resource "azurerm_subnet" "example" {
