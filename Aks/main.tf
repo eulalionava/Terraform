@@ -15,8 +15,8 @@ resource "azurerm_role_assignment" "role_assignment" {
   principal_id         = azurerm_user_assigned_identity.user_assigned.principal_id
 }
 
-resource "azurerm_kubernetes_cluster" "example" {
-  name                    = "aks-example"
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                    = "k8s-pef-prd-eastus-001"
   location                = var.location
   resource_group_name     = var.resource_group_name
   dns_prefix              = "aks-example"
