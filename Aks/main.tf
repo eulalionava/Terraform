@@ -4,7 +4,7 @@ resource "azurerm_private_dns_zone" "dns" {
 }
 
 resource "azurerm_user_assigned_identity" "user_assigned" {
-  name                = "aks-example-identity"
+  name                = "k8s-pef-prd-eastus-identity"
   resource_group_name = var.resource_group_name
   location            = var.location
 }
