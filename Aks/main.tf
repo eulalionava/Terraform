@@ -40,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   
 }
 resource "azurerm_kubernetes_cluster_node_pool" "user-pool" {
-  name                  = "k8s-pef-prd-eastus-pool"
+  name                  = "k8spefprdeastuspool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = "B16als_v2"
   node_count            = 1
