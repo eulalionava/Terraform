@@ -50,3 +50,10 @@ resource "azurerm_subnet" "subnet-devops1" {
   address_prefixes     = ["10.50.0.32/27"]
 }
 
+resource "azurerm_subnet" "subnet-azurebastion" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.hub.name
+  address_prefixes     = ["10.20.0.64/26"]
+}
+
