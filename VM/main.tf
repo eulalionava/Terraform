@@ -1,3 +1,14 @@
+resource "azurerm_network_interface" "network_interface" {
+  name                = "nic-vm-win-pef-devops-0"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = var.subnet_id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = "vm-win-pef-devops-0"
   resource_group_name = var.resource_group_name
