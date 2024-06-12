@@ -35,7 +35,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vnet_subnet_id  = var.vnet_subnet_id
     enable_auto_scaling = true
     min_count           = 1
-    max_count           = 3
+    max_count           = 2
   }
   
 }
@@ -45,4 +45,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "user-pool" {
   vm_size               = "B16als_v2"
   node_count            = 1
   vnet_subnet_id        = var.vnet_subnet_id_pool
+  enable_auto_scaling = true
+  min_count           = 1
+  max_count           = 3
 }
