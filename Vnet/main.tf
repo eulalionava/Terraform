@@ -17,7 +17,7 @@ resource "azurerm_virtual_network" "k8" {
   address_space       = ["10.140.0.0/16"]
 }
 resource "azurerm_virtual_network" "devops" {
-  name                = "vnw-devops-prd-eastus-001 "
+  name                = "vnw-devops-prd-eastus-001"
   location            = var.location
   resource_group_name = var.resource_group_name_ntw
   address_space       = ["10.50.0.0/24"]
