@@ -30,9 +30,16 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name            = "default"
-    node_count      = 2
+    node_count      = 1
     vm_size         = "Standard_DS3_v2"
     vnet_subnet_id  = var.vnet_subnet_id
   }
   
+}
+resource "azurerm_kubernetes_cluster_node_pool" "user-pool" {
+  name                  = "k8s-pef-prd-eastus-pool"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = "B16als_v2"
+  node_count            = 1
+  vnet_subnet_id        = var.vnet_subnet_id_pool
 }
