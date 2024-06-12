@@ -15,6 +15,7 @@ output "subnet_id_devops0_out" {
 output "subnet_id_devops1_out" {
   value = azurerm_subnet.subnet-devops1.id
 }
+/*
 output "subnet_id_bastion_out" {
   value = azurerm_subnet.subnet-bastion.id
-}
+}*/
