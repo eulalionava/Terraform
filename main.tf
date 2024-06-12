@@ -7,16 +7,33 @@ module "ResourceGroup"{
     source = "./ResourceGroup"
     location = local.location
 }
+
+module "ContainerRegistry"{
+    source = "./ContainerRegistry"
+    location = local.location
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
+}
+
 module "Vnet"{
     source = "./Vnet"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
-// module "ContainerRegistry"{
-//     source = "./ContainerRegistry"
-//     location = local.location
-//     resource_group_name = module.ResourceGroup.rg_aks_name_out
-// }
+
+# Llamar al módulo de Private Endpoint
+module "Private_endpoint" {
+  source                        = "./Private_endpoint"
+  private_endpoint_name         = "private-endpoint-pef"
+  location                      = local.location
+  resource_group_name           = module.ResourceGroup.rg_aks_name_out
+  subnet_id                     = module.Vnet.azurerm_subnet_id
+  private_service_connection_name = "example-private-service-connection"
+  acr_id                        = module.acr.azurerm_container_registry_id
+  virtual_network_id            = module.network.azurerm_virtual_network_id
+  acr_name                      = var.acr_name
+  private_ip_addresses          = ["10.0.1.4"]
+}
+
 
 /*module "KeyVault"{
     source = "./KeyVault"
