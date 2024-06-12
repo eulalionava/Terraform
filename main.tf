@@ -7,17 +7,20 @@ module "ResourceGroup"{
     source = "./ResourceGroup"
     location = local.location
 }
-
+module "Vnet"{
+    source = "./Vnet"
+    location = local.location
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
+}
 module "ContainerRegistry"{
     source = "./ContainerRegistry"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
-
-module "Vnet"{
-    source = "./Vnet"
+module "VM"{
+    source = "./VM"
     location = local.location
-    resource_group_name = module.ResourceGroup.rg_aks_name_out
+    resource_group_name = module.ResourceGroup.rg_ntw_name_out
 }
 /*
 # Llamar al módulo de Private Endpoint
