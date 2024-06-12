@@ -19,7 +19,7 @@ module "Vnet"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
-
+/*
 # Llamar al módulo de Private Endpoint
 module "Private_endpoint" {
   source                        = "./Private_endpoint"
@@ -33,7 +33,7 @@ module "Private_endpoint" {
   acr_name                      = var.acr_name
   private_ip_addresses          = ["10.0.1.4"]
 }
-
+*/
 
 /*module "KeyVault"{
     source = "./KeyVault"
