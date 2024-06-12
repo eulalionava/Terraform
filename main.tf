@@ -11,7 +11,7 @@ module "Vnet"{
     source = "./Vnet"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
-    resource_group_name_ntw = module.ResourceGroup.rg_aks_name_out
+    resource_group_name_ntw = module.ResourceGroup.rg_ntw_name_out
 }
 module "ContainerRegistry"{
     source = "./ContainerRegistry"
