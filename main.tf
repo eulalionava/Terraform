@@ -35,6 +35,7 @@ module "Aks"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
     vnet_subnet_id = module.Vnet.subnet_id_out
+    vnet_subnet_id_pool = module.Vnet.subnet_id_pool_out
 }
 #Crear vm para agente
 #Crear vm para grafana y prometheus
