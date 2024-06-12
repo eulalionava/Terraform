@@ -42,7 +42,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azurerm_kubernetes_cluster_node_pool" "user-pool" {
   name                  = "k8pool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
-  vm_size               = "B16als_v2"
+  vm_size               = "standard_b16als_v2"
   node_count            = 1
   vnet_subnet_id        = var.vnet_subnet_id_pool
   enable_auto_scaling = true
