@@ -37,13 +37,15 @@ module "Private_endpoint" {
 }
 */
 
-/*module "KeyVault"{
+module "KeyVault"{
     source = "./KeyVault"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
     key_vault_manager = local.key_vault_manager
     tenant = local.tenant
-}*/
+}
+
+/*
 module "StorageAccount"{
     source = "./StorageAccounts"
     location = local.location
