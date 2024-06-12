@@ -13,5 +13,5 @@ output "subnet_id_devops0" {
   value = azurerm_subnet.subnet-devops0.id
 }
 output "subnet_id_devops1" {
-  value = azurerm_subnet.subnets-devops1.id
+  value = azurerm_subnet.subnet-devops1.id
 }
