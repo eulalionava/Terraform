@@ -16,6 +16,12 @@ resource "azurerm_virtual_network" "k8" {
   resource_group_name = var.resource_group_name
   address_space       = ["10.140.0.0/16"]
 }
+resource "azurerm_virtual_network" "devops" {
+  name                = "vnw-devops-prd-eastus-001 "
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  address_space       = ["10.50.0.0/24"]
+}
 
 ####subnets####
 
@@ -30,4 +36,16 @@ resource "azurerm_subnet" "subnet-aks" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.k8.name
   address_prefixes     = ["10.140.0.0/21"]
+}
+resource "azurerm_subnet" "subnet-devops0" {
+  name                 = "snet-devops-pef-ntw-eastus-001"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.k8.name
+  address_prefixes     = ["10.50.0.0/28"]
+}
+resource "azurerm_subnet" "subnet-devops1" {
+  name                 = "snet-pe-pef-ntw-eastus-001"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.k8.name
+  address_prefixes     = ["10.50.0.32/27"]
 }
