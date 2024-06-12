@@ -34,12 +34,12 @@ module "VM"{
     vnet_subnet_id = module.Vnet.subnet_id_devops0_out
 }
 
-// module "vmwindows" {
-//   source                 = "./VMWindows"
-//   location               = local.location
-//   resource_group_name    = module.ResourceGroup.rg_aks_name_out
-//   network_interface_id   = module.Vnet.subnet_id_devops0_out
-// }
+module "vmwindows" {
+  source                = "./VMWindows"
+  location              = local.location
+  resource_group_name   = module.ResourceGroup.rg_aks_name_out
+  vnet_subnet_id        = module.Vnet.subnet_id_devops0_out
+}
 /*
 # Llamar al módulo de Private Endpoint
 module "Private_endpoint" {
