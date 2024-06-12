@@ -22,3 +22,8 @@ variable "acr_id" {
   description = "The ID of the container registry."
   type        = string
 }
+
+variable "private_service_connection_name" {
+  description = "The name of the private service connection."
+  type        = string
+}
