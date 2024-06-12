@@ -10,3 +10,7 @@ output "rg_aks_name_out"{
     value = azurerm_resource_group.rg_aks.name
 
 }
+output "rg_cdn_name_out"{
+    value = azurerm_resource_group.rg_cdn.name
+
+}
