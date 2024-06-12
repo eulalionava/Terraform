@@ -29,9 +29,6 @@ module "Private_endpoint" {
   subnet_id                     = module.Vnet.azurerm_subnet_id
   private_service_connection_name = "private-service-connection"
   acr_id                        = module.ContainerRegistry.acr_id
-  virtual_network_id            = module.Vnet.azurerm_subnet_id
-  acr_name                      = var.acr_name
-  private_ip_addresses          = ["10.0.1.4"]
 }
 */
 
