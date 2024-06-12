@@ -10,3 +10,7 @@ variable "vnet_subnet_id"{
     type = string
     description = "The ID of the subnet where the AKS cluster node pool will be located."
 }
+variable "vnet_subnet_id_pool"{
+    type = string
+    description = "The ID of the subnet where the AKS cluster node pool will be located."
+}
