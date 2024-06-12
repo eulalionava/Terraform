@@ -10,7 +10,7 @@ resource "azurerm_network_interface" "network-interface" {
   }
 }
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "vm-windows-pef-devops-0"
+  name                = "vm-window-pef-0"
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = "Standard_F2"
