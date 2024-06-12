@@ -33,6 +33,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     node_count      = 1
     vm_size         = "Standard_DS3_v2"
     vnet_subnet_id  = var.vnet_subnet_id
+    enable_auto_scaling = true
+    min_count           = 1
+    max_count           = 3
   }
   
 }
