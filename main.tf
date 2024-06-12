@@ -54,5 +54,10 @@ module "Aks"{
     vnet_subnet_id = module.Vnet.subnet_id
     vnet_subnet_id_pool = module.Vnet.subnet_id_pool_out
 }
+module "ServiceBus"{
+    source = "./ServiceBus"
+    location = local.location
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
+}
 #Crear vm para agente
 #Crear vm para grafana y prometheus
