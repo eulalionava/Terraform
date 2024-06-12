@@ -21,7 +21,7 @@ module "VM"{
     source = "./VM"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_ntw_name_out
-    vnet_subnet_id = module.Vnet.devops0
+    vnet_subnet_id = module.Vnet.subnet_id_devops0
 }
 /*
 # Llamar al módulo de Private Endpoint
