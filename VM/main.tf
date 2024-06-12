@@ -1,4 +1,4 @@
-resource "azurerm_network_interface" "network_interface" {
+resource "azurerm_network_interface" "network-interface" {
   name                = "nic-vm-win-pef-devops-0"
   location            = var.location
   resource_group_name = var.resource_group_name
