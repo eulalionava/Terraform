@@ -1,8 +1,8 @@
-resource "azurerm_virtual_network" "global" {
+resource "azurerm_virtual_network" "hub" {
   name                = "global"
   location            = var.location
   resource_group_name = var.resource_group_name
-  address_space       = ["10.120.0.0/24"]
+  address_space       = ["10.20.0.0/24"]
 }
 resource "azurerm_virtual_network" "Api" {
   name                = "api"
