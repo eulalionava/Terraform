@@ -4,7 +4,15 @@ resource "azurerm_container_registry" "acr" {
   location            = var.location
   sku                 = "Premium"
   admin_enabled       = true
+
   public_network_access_enabled = false
   
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "eulalio@readymind.ms"
+    Client      = "Natus"
+  } 
   
 }
