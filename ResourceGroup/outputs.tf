@@ -14,3 +14,7 @@ output "rg_cdn_name_out"{
     value = azurerm_resource_group.rg_cdn.name
 
 }
+output "rg_ntw_name_out"{
+    value = azurerm_resource_group.rg_ntw.name
+
+}
