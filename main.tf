@@ -70,5 +70,10 @@ module "ServiceBus"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
+module "Bastion"{
+    source = "./Bastion"
+    location = local.location
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
+}
 #Crear vm para agente
 #Crear vm para grafana y prometheus
