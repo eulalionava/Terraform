@@ -27,3 +27,8 @@ variable "private_service_connection_name" {
   description = "The name of the private service connection."
   type        = string
 }
+
+variable "virtual_network_id" {
+  description = "The ID of the virtual network."
+  type        = string
+}
