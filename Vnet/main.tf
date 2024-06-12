@@ -47,5 +47,5 @@ resource "azurerm_subnet" "subnet-devops1" {
   name                 = "snet-pe-pef-ntw-eastus-001"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.k8.name
-  address_prefixes     = ["10.50.0.32/27"]
+  address_prefixes     = ["10.50.1.32/27"]
 }
