@@ -7,7 +7,7 @@ resource "azurerm_public_ip" "ip" {
 }
 
 resource "azurerm_bastion_host" "example" {
-  name                = "bas-pef-prd-eastus-001"
+  name                = "AzureBastionSubnet"
   location            = var.location
   resource_group_name = var.resource_group_name
 
