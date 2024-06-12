@@ -1,5 +1,5 @@
 resource "azurerm_virtual_network" "hub" {
-  name                = "global"
+  name                = "vnw-hub-pef-prd-eastus-001"
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = ["10.20.0.0/24"]
