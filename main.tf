@@ -18,6 +18,15 @@ module "ContainerRegistry"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
 }
+
+module "KeyVault"{
+    source = "./KeyVault"
+    location = local.location
+    resource_group_name = module.ResourceGroup.rg_aks_name_out
+    key_vault_manager = local.key_vault_manager
+    tenant = local.tenant
+}
+
 module "VM"{
     source = "./VM"
     location = local.location
@@ -37,13 +46,6 @@ module "Private_endpoint" {
 }
 */
 
-module "KeyVault"{
-    source = "./KeyVault"
-    location = local.location
-    resource_group_name = module.ResourceGroup.rg_aks_name_out
-    key_vault_manager = local.key_vault_manager
-    tenant = local.tenant
-}
 
 /*
 module "StorageAccount"{
