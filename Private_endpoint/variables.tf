@@ -8,6 +8,11 @@ variable "resource_group_name" {
     type        = string
 }
 
+variable "private_endpoint_name" {
+  description = "The name of the private endpoint."
+  type        = string
+}
+
 variable "subnet_id" {
   description = "The ID of the subnet for the private endpoint."
   type        = string
