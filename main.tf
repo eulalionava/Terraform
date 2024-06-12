@@ -46,8 +46,6 @@ module "Private_endpoint" {
 }
 */
 
-
-/*
 module "StorageAccount"{
     source = "./StorageAccounts"
     location = local.location
