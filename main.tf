@@ -13,6 +13,7 @@ module "Vnet"{
     resource_group_name = module.ResourceGroup.rg_aks_name_out
     resource_group_name_ntw = module.ResourceGroup.rg_ntw_name_out
 }
+/*
 module "ContainerRegistry"{
     source = "./ContainerRegistry"
     location = local.location
@@ -52,7 +53,7 @@ module "Private_endpoint" {
   acr_id                        = module.ContainerRegistry.acr_id
 }
 */
-
+/*
 module "StorageAccount"{
     source = "./StorageAccounts"
     location = local.location
@@ -75,6 +76,6 @@ module "Bastion"{
     location = local.location
     resource_group_name = module.ResourceGroup.rg_hub_name_out
     vnet_subnet_id = module.Vnet.subnet_id_devops2_out
-}
+}*/
 #Crear vm para agente
 #Crear vm para grafana y prometheus
