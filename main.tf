@@ -3,10 +3,11 @@ locals {
   tenant        = "08c7a78d-587d-4487-962e-93c5fb54c7bf" #Agregue el tenant
   key_vault_manager = "a493aae0-a6c0-4b99-ac6a-eeebb51076c8"  #objectId del administrador de KV
 }
+/*
 module "ResourceGroup"{
     source = "./ResourceGroup"
     location = local.location
-}
+}*/
 /*
 module "Vnet"{
     source = "./Vnet"
