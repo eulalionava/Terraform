@@ -2,7 +2,6 @@ resource "azuread_application" "app" {
   name                       = "appcs-pef-prd-eastus-001"
   homepage                   = var.homepage
   identifier_uris            = var.identifier_uris
-  reply_urls                 = var.reply_urls
   available_to_other_tenants = false
 }
 
