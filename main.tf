@@ -7,7 +7,6 @@ locals {
 
 module "app_registration" {
   source                  = "./AppRegistration"
-  homepage                = "https://example.com"
   identifier_uris         = local.identifier_uris
   client_secret           = "changeme"
   client_secret_end_date  = "2024-06-13T23:59:59Z"
