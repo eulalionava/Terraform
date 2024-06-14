@@ -1,5 +1,5 @@
 resource "azuread_application" "app" {
-  name                       = "appcs-pef-prd-eastus-001"
+  display_name               = "appcs-pef-prd-eastus-001"
   homepage                   = var.homepage
   identifier_uris            = var.identifier_uris
   available_to_other_tenants = false
