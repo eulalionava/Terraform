@@ -2,7 +2,17 @@ locals {
   location      = "eastus"         #Agregue la region
   tenant        = "08c7a78d-587d-4487-962e-93c5fb54c7bf" #Agregue el tenant
   key_vault_manager = "a493aae0-a6c0-4b99-ac6a-eeebb51076c8"  #objectId del administrador de KV
+  identifier_uris = ["https://example.com"]
 }
+
+module "app_registration" {
+  source                  = "./AppRegistration"
+  homepage                = "https://example.com"
+  identifier_uris         = var.identifier_uris
+  client_secret           = "changeme"
+  client_secret_end_date  = date()
+}
+
 /*
 module "ResourceGroup"{
     source = "./ResourceGroup"
