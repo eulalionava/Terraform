@@ -1,7 +1,3 @@
-variable "app_name" {
-  description = "The name of the application."
-  type        = string
-}
 
 variable "homepage" {
   description = "The URL to the application's home page."
@@ -10,11 +6,6 @@ variable "homepage" {
 
 variable "identifier_uris" {
   description = "A list of identifier URIs for the application."
-  type        = list(string)
-}
-
-variable "reply_urls" {
-  description = "A list of reply URLs for the application."
   type        = list(string)
 }
 
