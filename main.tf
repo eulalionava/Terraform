@@ -4,7 +4,6 @@ locals {
   key_vault_manager = "a493aae0-a6c0-4b99-ac6a-eeebb51076c8"  #objectId del administrador de KV
   identifier_uris = ["https://example.com"]
   capacity = 2,
-  frontend_port:80
 }
 
 // module "app_registration" {
