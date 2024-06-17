@@ -5,18 +5,19 @@ locals {
   identifier_uris = ["https://example.com"]
 }
 
-module "app_registration" {
-  source                  = "./AppRegistration"
-  identifier_uris         = local.identifier_uris
-  client_secret           = "changeme"
-  client_secret_end_date  = "2024-06-13T23:59:59Z"
+// module "app_registration" {
+//   source                  = "./AppRegistration"
+//   identifier_uris         = local.identifier_uris
+//   client_secret           = "changeme"
+//   client_secret_end_date  = "2024-06-13T23:59:59Z"
 }
 
-/*
+
 module "ResourceGroup"{
     source = "./ResourceGroup"
     location = local.location
-}*/
+}
+
 /*
 module "Vnet"{
     source = "./Vnet"
