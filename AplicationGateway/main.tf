@@ -1,3 +1,19 @@
+resource "azurerm_public_ip" "public_ip" {
+  name                = "public_ip"
+  resource_group_name = azurerm_resource_group.natus-seg-rg.name
+  location            = azurerm_resource_group.natus-seg-rg.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
+
+  tags = {
+    Environment = "Develop"
+    Department  = "EH"
+    Createdby   = "Terraform"
+    EmailOwner  = "acardenas@readymind.ms"
+    Client      = "Natus"
+  }
+}
+
 resource "azurerm_application_gateway" "appgw" {
   name                = "appgw01"
   resource_group_name = azurerm_resource_group.natus-seg-rg.name
