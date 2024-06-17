@@ -28,7 +28,7 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   frontend_ip_configuration {
-    name                 = local.frontend_ip_configuration_name
+    name                 = "my_frontend_ip_configuration"
     public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 
