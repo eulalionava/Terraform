@@ -1,3 +1,14 @@
+
+
+locals {
+  frontend_ip_configuration_name = "my_frontend_ip_configuration"
+  backend_address_pool_name = "node-pool-beap"
+  frontend_port_name        = "my_frontend_port"
+  http_setting_name         = "backend_http_settings"
+  listener_name             = "my_listener_name"
+  request_routing_rule_name = "my_request_routing_rule"
+}
+
 resource "azurerm_public_ip" "public_ip" {
   name                = "public_ip"
   resource_group_name = var.resource_group_name
@@ -44,7 +55,7 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   frontend_ip_configuration {
-    name                 = "my_frontend_ip_configuration"
+    name                 = local.frontend_ip_configuration_name
     public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 
