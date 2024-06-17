@@ -3,6 +3,8 @@ locals {
   tenant        = "08c7a78d-587d-4487-962e-93c5fb54c7bf" #Agregue el tenant
   key_vault_manager = "a493aae0-a6c0-4b99-ac6a-eeebb51076c8"  #objectId del administrador de KV
   identifier_uris = ["https://example.com"]
+  capacity = 2,
+  frontend_port:80
 }
 
 // module "app_registration" {
@@ -18,13 +20,23 @@ module "ResourceGroup"{
     location = local.location
 }
 
-/*
+
+
 module "Vnet"{
     source = "./Vnet"
     location = local.location
     resource_group_name = module.ResourceGroup.rg_aks_name_out
     resource_group_name_ntw = module.ResourceGroup.rg_ntw_name_out
-}*/
+}
+
+module "application_gateway" {
+  source              = "./ApplicationGateway"
+  resource_group_name = module.ResourceGroup.rg_hub_name_out
+  location            = local.location
+  capacity            = local.capacity
+  subnet_id           = module.Vnet.subnet_id
+}
+
 /*
 module "ContainerRegistry"{
     source = "./ContainerRegistry"
