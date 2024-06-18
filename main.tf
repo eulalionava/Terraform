@@ -34,6 +34,7 @@ module "application_gateway" {
   location            = local.location
   capacity            = local.capacity
   subnet_id           = module.Vnet.subnet_id
+  frontend_port       = 80
 }
 
 /*
