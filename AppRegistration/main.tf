@@ -5,7 +5,7 @@ resource "azuread_application" "app" {
   available_to_other_tenants = false
 
   web {
-    home_page_url            = var.home_page_url
+    homepage            = var.home_page_url
     redirect_uris            = var.redirect_uris
     logout_url               = var.logout_url
 
