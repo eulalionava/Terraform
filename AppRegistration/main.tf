@@ -7,6 +7,7 @@ resource "azuread_application" "app" {
     home_page_url            = var.home_page_url
     redirect_uris            = var.redirect_uris
     logout_url               = var.logout_url
+    
     implicit_grant {
       access_token_issuance_enabled = var.access_token_issuance_enabled
       id_token_issuance_enabled     = var.id_token_issuance_enabled
