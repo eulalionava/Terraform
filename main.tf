@@ -35,7 +35,7 @@ module "application_gateway" {
 
 module "app_configuration" {
   source              = "./AppConfiguration"
-  name                = var.name
+  name                = "myappconfig"
   resource_group_name = module.ResourceGroup.rg_hub_name_out
   location            = local.location
   sku                 = "Standard"
