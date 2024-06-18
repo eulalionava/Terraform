@@ -39,7 +39,6 @@ module "app_configuration" {
   resource_group_name = module.ResourceGroup.rg_hub_name_out
   location            = local.location
   sku                 = "Standard"
-  keys                = var.keys
 }
 
 // module "app_registration" {
