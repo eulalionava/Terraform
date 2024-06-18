@@ -26,7 +26,7 @@ resource "azurerm_public_ip" "public_ip" {
 }
 
 resource "azurerm_application_gateway" "appgw" {
-  name                = "appgw01"
+  name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
 
