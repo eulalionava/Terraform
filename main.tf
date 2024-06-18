@@ -29,7 +29,7 @@ module "Vnet"{
 }
 
 module "application_gateway" {
-  source              = "./ApplicationGateway"
+  source              = "./AplicationGateway"
   resource_group_name = module.ResourceGroup.rg_hub_name_out
   location            = local.location
   capacity            = local.capacity
