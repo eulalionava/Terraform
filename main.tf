@@ -33,18 +33,18 @@ module "application_gateway" {
   backend_port        = 80
 }
 
-module "app_registration" {
-  source                          = "./AppRegistration"
-  identifier_uris                 = ["https://example.com"]
-  home_page_url                   = "https://example.com"
-  redirect_uris                   = ["https://example.com/redirect"]
-  logout_url                      = "https://example.com/logout"
-  access_token_issuance_enabled   = true
-  id_token_issuance_enabled       = true
-  resource_app_id                 = local.tenant
-  resource_access_id              = "user.read"
-  client_secret                   = "secret"
-}
+// module "app_registration" {
+//   source                          = "./AppRegistration"
+//   identifier_uris                 = ["https://example.com"]
+//   home_page_url                   = "https://example.com"
+//   redirect_uris                   = ["https://example.com/redirect"]
+//   logout_url                      = "https://example.com/logout"
+//   access_token_issuance_enabled   = true
+//   id_token_issuance_enabled       = true
+//   resource_app_id                 = local.tenant
+//   resource_access_id              = "user.read"
+//   client_secret                   = "secret"
+// }
 
 /*
 module "ContainerRegistry"{
