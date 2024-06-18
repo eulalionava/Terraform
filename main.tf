@@ -33,6 +33,8 @@ module "application_gateway" {
   name                = "appgw01"
   resource_group_name = module.ResourceGroup.rg_hub_name_out
   location            = local.location
+  sku_name            = "Standard_v2"
+  sku_tier            = "Standard_v2"
   capacity            = local.capacity
   subnet_id           = module.Vnet.subnet_id
   frontend_port       = 80
