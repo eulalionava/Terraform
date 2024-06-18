@@ -33,6 +33,15 @@ module "application_gateway" {
   backend_port        = 80
 }
 
+module "app_configuration" {
+  source              = "./AppConfiguration"
+  name                = var.name
+  resource_group_name = module.ResourceGroup.rg_hub_name_out
+  location            = local.location
+  sku                 = "Standard"
+  keys                = var.keys
+}
+
 // module "app_registration" {
 //   source                          = "./AppRegistration"
 //   identifier_uris                 = ["https://example.com"]
