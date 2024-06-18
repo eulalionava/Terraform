@@ -39,8 +39,8 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   sku {
-    name     = "Standard_v2"
-    tier     = "Standard_v2"
+    name     = var.sku_name
+    tier     = var.sku_tier
     capacity = var.capacity
   }
 
