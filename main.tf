@@ -36,8 +36,13 @@ module "application_gateway" {
 module "app_registration" {
   source                  = "./AppRegistration"
   identifier_uris         = local.identifier_uris
-  client_secret           = "changeme"
-  client_secret_end_date  = "2024-06-13T23:59:59Z"
+  home_page_url                   = "https://example.com"
+  redirect_uris                   = ["https://example.com/redirect"]
+  logout_url                      = "https://example.com/logout"
+  access_token_issuance_enabled   = true
+  id_token_issuance_enabled       = true
+  resource_app_id                 = local.tenant
+  resource_access_id              = "user.read"
 }
 
 /*
