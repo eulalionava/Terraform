@@ -2,7 +2,6 @@ resource "azurerm_app_configuration" "appconfig" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
-  sku                 = var.sku
 }
 
 // resource "azurerm_app_configuration_key" "appconfig" {
