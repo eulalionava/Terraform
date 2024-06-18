@@ -29,7 +29,6 @@ resource "azurerm_application_gateway" "appgw" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
-  public_ip_address_id = azurerm_public_ip.public_ip.id
   backend_ip_address = "10.140.1.0"
 
   tags = {
@@ -58,7 +57,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   frontend_ip_configuration {
     name                 = local.frontend_ip_configuration_name
-    // public_ip_address_id = azurerm_public_ip.public_ip.id
+    public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 
   backend_address_pool {
