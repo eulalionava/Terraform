@@ -43,6 +43,7 @@ module "app_registration" {
   id_token_issuance_enabled       = true
   resource_app_id                 = local.tenant
   resource_access_id              = "user.read"
+  client_secret                   = "secret"
 }
 
 /*
