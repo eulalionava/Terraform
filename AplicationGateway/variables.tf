@@ -38,15 +38,6 @@ variable "frontend_port" {
   type        = number
 }
 
-variable "public_ip_address_id" {
-  description = "The public IP address ID for the Application Gateway"
-  type        = string
-}
-
-variable "backend_ip_address" {
-  description = "The backend IP address for the Application Gateway"
-  type        = string
-}
 
 variable "backend_port" {
   description = "The backend port for the Application Gateway"
