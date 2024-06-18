@@ -29,7 +29,6 @@ resource "azurerm_application_gateway" "appgw" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
-  backend_ip_address = "10.140.1.0"
 
   tags = {
     Environment = "Develop"
