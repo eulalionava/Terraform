@@ -34,8 +34,8 @@ module "application_gateway" {
 }
 
 module "app_registration" {
-  source                  = "./AppRegistration"
-  identifier_uris         = local.identifier_uris
+  source                          = "./AppRegistration"
+  identifier_uris                 = ["https://example.com"]
   home_page_url                   = "https://example.com"
   redirect_uris                   = ["https://example.com/redirect"]
   logout_url                      = "https://example.com/logout"
