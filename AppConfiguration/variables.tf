@@ -13,7 +13,7 @@ variable "location" {
   type        = string
 }
 
-variable "sku" {
-  description = "The SKU of the App Configuration"
-  type        = string
-}
+// variable "sku" {
+//   description = "The SKU of the App Configuration"
+//   type        = string
+// }
