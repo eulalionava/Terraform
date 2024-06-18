@@ -1,13 +1,14 @@
 resource "azuread_application" "app" {
   display_name               = "appcs-pef-prd-eastus-001"
   identifier_uris            = var.identifier_uris
+  sign_in_audience           = var.sign_in_audience
   available_to_other_tenants = false
 
   web {
     home_page_url            = var.home_page_url
     redirect_uris            = var.redirect_uris
     logout_url               = var.logout_url
-    
+
     implicit_grant {
       access_token_issuance_enabled = var.access_token_issuance_enabled
       id_token_issuance_enabled     = var.id_token_issuance_enabled
