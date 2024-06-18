@@ -18,3 +18,9 @@ variable "client_secret_end_date" {
   description = "The end date for the client secret."
   type        = string
 }
+
+variable "sign_in_audience" {
+  description = "Specifies the sign-in audience for the application"
+  type        = string
+  default     = "AzureADMyOrg"
+}
