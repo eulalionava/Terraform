@@ -45,7 +45,7 @@ data "azuread_service_principal" "redhatopenshift" {
 
 resource "azurerm_role_assignment" "role_network1" {
   scope                = var.vnet-hub-id
-  role_definition_name = "Network Contributor"
+  role_definition_name = "Owner"
   principal_id         = azuread_service_principal.asp.object_id
 }
 
