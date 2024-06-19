@@ -40,7 +40,7 @@ resource "azuread_service_principal_password" "app" {
 
 data "azuread_service_principal" "redhatopenshift" {
   // This is the Azure Red Hat OpenShift RP service principal id, do NOT delete it
-  client_id = "4e1f373b-4358-4129-a8eb-65dea9defa1a"
+  client_id = "a493aae0-a6c0-4b99-ac6a-eeebb51076c8"
 }
 
 resource "azurerm_role_assignment" "role_network1" {
