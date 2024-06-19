@@ -32,6 +32,7 @@ module "application_gateway" {
   frontend_port       = 80
   backend_port        = 80
 }
+// Creacion de app configuration
 
 # module "app_configuration" {
 #   source              = "./AppConfiguration"
