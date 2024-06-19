@@ -40,13 +40,13 @@ resource "azuread_service_principal_password" "app" {
 
 data "azuread_service_principal" "redhatopenshift" {
   // This is the Azure Red Hat OpenShift RP service principal id, do NOT delete it
-  client_id = "f1dd0a37-89c6-4e07-bcd1-ffd3d43d8875"
+  client_id = "7d7c8ee7-f410-4f01-9c33-3744f87ff4e8"
 }
 
 resource "azurerm_role_assignment" "role_network1" {
   scope                = azurerm_virtual_network.example.id
   role_definition_name = "Network Contributor"
-  principal_id         = azuread_service_principal.example.object_id
+  principal_id         = azuread_service_principal.asp.object_id
 }
 
 resource "azurerm_role_assignment" "role_network2" {
