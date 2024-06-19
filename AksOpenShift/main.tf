@@ -26,6 +26,18 @@
 //   service_endpoints    = ["Microsoft.ContainerRegistry"]
 // }
 
+resource "azuread_application" "aplication" {
+  display_name = "ap-apenshift"
+}
+
+resource "azuread_service_principal" "asp" {
+  client_id = azuread_application.aplication.client_id
+}
+
+resource "azuread_service_principal_password" "app" {
+  service_principal_id = azuread_service_principal.asp.object_id
+}
+
 resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
   name                = var.cluster_name
   resource_group_name = var.resource_group_name
@@ -37,25 +49,17 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
     version              = var.openshift_version
   }
 
-  master_profile {
-    vm_size             = var.master_vm_size
-    subnet_id           = var.master_subnet_id
-  }
-
-  worker_profiles {
-    name                = "worker"
-    vm_size             = var.worker_vm_size
-    disk_size_gb        = var.worker_disk_size
-    subnet_id           = var.worker_subnet_id
-    count               = var.worker_count
-  }
-
   network_profile {
     pod_cidr            = var.pod_cidr
     service_cidr        = var.service_cidr
   }
 
-  apiserver_profile {
+  main_profile {
+    vm_size             = var.master_vm_size
+    subnet_id           = var.master_subnet_id
+  }
+  
+  api_server_profile {
     visibility          = var.apiserver_visibility
   }
 
@@ -63,6 +67,22 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
     name                = "default"
     visibility          = var.ingress_visibility
   }
+  
+
+  worker_profile {
+    name                = "worker"
+    vm_size             = var.worker_vm_size
+    disk_size_gb        = var.worker_disk_size
+    subnet_id           = var.worker_subnet_id
+    count               = var.worker_count
+  }
+
+  service_principal {
+    client_id     = azuread_application.aplication.client_id
+    client_secret = azuread_service_principal_password.app.value
+  }
+
+
 
   tags = var.tags
 }
