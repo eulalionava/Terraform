@@ -43,17 +43,17 @@ data "azuread_service_principal" "redhatopenshift" {
   client_id = "7d7c8ee7-f410-4f01-9c33-3744f87ff4e8"
 }
 
-resource "azurerm_role_assignment" "role_network1" {
-  scope                = azurerm_virtual_network.example.id
-  role_definition_name = "Network Contributor"
-  principal_id         = azuread_service_principal.asp.object_id
-}
+// resource "azurerm_role_assignment" "role_network1" {
+//   scope                = azurerm_virtual_network.example.id
+//   role_definition_name = "Network Contributor"
+//   principal_id         = azuread_service_principal.asp.object_id
+// }
 
-resource "azurerm_role_assignment" "role_network2" {
-  scope                = azurerm_virtual_network.example.id
-  role_definition_name = "Network Contributor"
-  principal_id         = data.azuread_service_principal.redhatopenshift.object_id
-}
+// resource "azurerm_role_assignment" "role_network2" {
+//   scope                = azurerm_virtual_network.example.id
+//   role_definition_name = "Network Contributor"
+//   principal_id         = data.azuread_service_principal.redhatopenshift.object_id
+// }
 
 resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
   name                = var.cluster_name
