@@ -38,14 +38,14 @@ resource "azurerm_redhat_openshift_cluster" "example" {
 
   master_profile {
     vm_size             = var.master_vm_size
-    subnet_id           = azurerm_subnet.master_subnet.id
+    subnet_id           = var.master_subnet_id
   }
 
   worker_profiles {
     name                = "worker"
     vm_size             = var.worker_vm_size
     disk_size_gb        = var.worker_disk_size
-    subnet_id           = azurerm_subnet.worker_subnet.id
+    subnet_id           = var.worker_subnet_id
     count               = var.worker_count
   }
 
