@@ -37,6 +37,7 @@ module "application_gateway" {
 module "openshift" {
   source               = "./AksOpenShift"
   resource_group_name  = module.ResourceGroup.rg_hub_name_out
+  resource_group_id    = module.ResourceGroup.rg_group_hub_id
   location             = local.location
   vnet_name            = module.Vnet.k8.name
   vnet_address_space   = module.Vnet.k8.address_space
