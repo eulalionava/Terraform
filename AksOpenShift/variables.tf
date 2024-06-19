@@ -13,6 +13,11 @@ variable "location" {
   type        = string
 }
 
+variable "vnet-hub-id" {
+  description = "The id of the virtual network"
+  type        = string
+}
+
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
