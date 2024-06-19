@@ -45,7 +45,6 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
 
   cluster_profile {
     domain               = var.domain
-    resource_group_id    = var.resource_group_id
     version              = var.openshift_version
   }
 
@@ -64,7 +63,6 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
   }
 
   ingress_profile {
-    name                = "default"
     visibility          = var.ingress_visibility
   }
   
