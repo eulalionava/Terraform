@@ -38,15 +38,15 @@ variable "master_subnet_id" {
   type        = string
 }
 
-variable "worker_subnet_name" {
-  description = "The name of the worker subnet"
-  type        = string
-}
+// variable "worker_subnet_name" {
+//   description = "The name of the worker subnet"
+//   type        = string
+// }
 
-variable "worker_subnet_prefix" {
-  description = "The address prefix of the worker subnet"
-  type        = string
-}
+// variable "worker_subnet_prefix" {
+//   description = "The address prefix of the worker subnet"
+//   type        = string
+// }
 
 variable "worker_subnet_id" {
   description = "The subnet ID for the Subnet"
