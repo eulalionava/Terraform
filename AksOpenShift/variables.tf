@@ -23,15 +23,15 @@ variable "vnet_address_space" {
   type        = list(string)
 }
 
-variable "master_subnet_name" {
-  description = "The name of the master subnet"
-  type        = string
-}
+// variable "master_subnet_name" {
+//   description = "The name of the master subnet"
+//   type        = string
+// }
 
-variable "master_subnet_prefix" {
-  description = "The address prefix of the master subnet"
-  type        = string
-}
+// variable "master_subnet_prefix" {
+//   description = "The address prefix of the master subnet"
+//   type        = string
+// }
 
 variable "master_subnet_id" {
   description = "The subnet ID for the Subnet"
