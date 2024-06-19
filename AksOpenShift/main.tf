@@ -26,13 +26,14 @@
 //   service_endpoints    = ["Microsoft.ContainerRegistry"]
 // }
 
-resource "azurerm_redhat_openshift_cluster" "example" {
+resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
   name                = var.cluster_name
-  resource_group_name = azurerm_resource_group.example.name
+  resource_group_name = var.resource_group_name
   location            = var.location
+
   cluster_profile {
     domain               = var.domain
-    resource_group_id    = azurerm_resource_group.example.id
+    resource_group_id    = var.resource_group_id
     version              = var.openshift_version
   }
 
@@ -67,5 +68,5 @@ resource "azurerm_redhat_openshift_cluster" "example" {
 }
 
 output "openshift_cluster_id" {
-  value = azurerm_redhat_openshift_cluster.example.id
+  value = azurerm_redhat_openshift_cluster.aksopenshift.id
 }
