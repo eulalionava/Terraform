@@ -58,7 +58,7 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
     vm_size             = var.master_vm_size
     subnet_id           = var.master_subnet_id
   }
-  
+
   api_server_profile {
     visibility          = var.apiserver_visibility
   }
@@ -70,11 +70,10 @@ resource "azurerm_redhat_openshift_cluster" "aksopenshift" {
   
 
   worker_profile {
-    name                = "worker"
     vm_size             = var.worker_vm_size
     disk_size_gb        = var.worker_disk_size
     subnet_id           = var.worker_subnet_id
-    count               = var.worker_count
+    node_count               = var.worker_count
   }
 
   service_principal {
