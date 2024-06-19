@@ -28,6 +28,11 @@ variable "master_subnet_prefix" {
   type        = string
 }
 
+variable "subnet_id_pool_out" {
+  description = "The subnet ID for the Application Gateway"
+  type        = string
+}
+
 variable "worker_subnet_name" {
   description = "The name of the worker subnet"
   type        = string
@@ -42,6 +47,12 @@ variable "cluster_name" {
   description = "The name of the OpenShift cluster"
   type        = string
 }
+
+variable "subnet_id" {
+  description = "The subnet ID for the Application Gateway"
+  type        = string
+}
+
 
 variable "domain" {
   description = "The domain of the OpenShift cluster"
