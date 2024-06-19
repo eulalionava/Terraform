@@ -19,6 +19,16 @@ output "subnet_id_devops1_out" {
 output "subnet_id_devops2_out" {
   value = azurerm_subnet.subnet-azurebastion.id
 }
+
+//Nombres de Maquinas Virtuales
+output "virtual_network_hub_name" {
+  value = azurerm_virtual_network.k8.name
+}
+
+output "virtual_network_hub_address" {
+  value = azurerm_virtual_network.k8.address_space
+}
+
 /*
 output "subnet_id_bastion_out" {
   value = azurerm_subnet.subnet-bastion.id
