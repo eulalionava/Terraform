@@ -2,9 +2,6 @@ output "subnet_id_pool_out" {
   value = azurerm_subnet.subnet-aks.id
 }
 
-#output "azurerm_virtual_network_id" {
-#  value = azurerm_virtual_network.k8.id
-#}
 
 output "subnet_id" {
   value = azurerm_subnet.subnet.id
@@ -21,6 +18,10 @@ output "subnet_id_devops2_out" {
 }
 
 //Nombres de Maquinas Virtuales
+output "virtual_network_hub_id" {
+  value = azurerm_virtual_network.k8.id
+}
+
 output "virtual_network_hub_name" {
   value = azurerm_virtual_network.k8.name
 }
