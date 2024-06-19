@@ -39,6 +39,7 @@ module "openshift" {
   resource_group_name  = module.ResourceGroup.rg_hub_name_out
   resource_group_id    = module.ResourceGroup.rg_group_hub_id
   location             = local.location
+  vnet-hub-id          = module.Vnet.virtual_network_hub_id
   vnet_name            = module.Vnet.virtual_network_hub_name
   vnet_address_space   = module.Vnet.virtual_network_hub_address
   master_subnet_id     = module.Vnet.subnet_id_pool_out
