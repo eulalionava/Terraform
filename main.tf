@@ -32,6 +32,34 @@ module "application_gateway" {
   frontend_port       = 80
   backend_port        = 80
 }
+//Creación AKS OpenShift
+
+module "openshift" {
+  source               = "./AksOpenShift"
+  resource_group_name  = module.ResourceGroup.rg_hub_name_out
+  location             = local.location
+  vnet_name            = module.Vnet.k8.name
+  vnet_address_space   = module.Vnet.k8.address_space
+  master_subnet_name   = "main-subnet"
+  master_subnet_prefix = ["10.140.0.0/24"]
+  worker_subnet_name   = "worker-subnet"
+  worker_subnet_prefix = ["10.140.32.0/24"]
+  cluster_name         = "aksOpenshift"
+  domain               = "example.com"
+  openshift_version    = "4.13.23"
+  master_vm_size       = "Standard_D8s_v3"
+  worker_vm_size       = "Standard_D8s_v3"
+  worker_disk_size     = 128
+  worker_count         = 3
+  pod_cidr             = "10.128.0.0/16"
+  service_cidr         = "172.30.0.0/16"
+  apiserver_visibility = "Public"
+  ingress_visibility   = "Public"
+  tags                 = {
+    environment = "production"
+    owner       = "eulalio@readymind"
+    }
+}
 // Creacion de app configuration
 
 # module "app_configuration" {
