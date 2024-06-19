@@ -18,3 +18,7 @@ output "rg_ntw_name_out"{
     value = azurerm_resource_group.rg_ntw.name
 
 }
+
+output "rg_group_hub_id"{
+    value = azurerm_resource_group.rg_hub.id
+}
